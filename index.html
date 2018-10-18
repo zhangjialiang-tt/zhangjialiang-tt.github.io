@@ -323,7 +323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/19/基于FPGA的Sobel边沿检测实现/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/18/Markdown-For-Typora/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="张嘉良">
@@ -342,7 +342,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/19/基于FPGA的Sobel边沿检测实现/" itemprop="url">基于FPGA的Sobel边沿检测实现</a></h1>
+                <a class="post-title-link" href="/2018/10/18/Markdown-For-Typora/" itemprop="url">Markdown For Typora</a></h1>
         
 
         <div class="post-meta">
@@ -354,8 +354,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-19T01:13:47+08:00">
-                2018-10-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-18T22:54:09+08:00">
+                2018-10-18
               </time>
             
 
@@ -364,6 +364,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Markdown/" itemprop="url" rel="index">
+                    <span itemprop="name">Markdown</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -394,59 +416,15 @@
       
         
           
-            <h1 id="翻译-基于FPGA的Sobel边沿检测实现"><a href="#翻译-基于FPGA的Sobel边沿检测实现" class="headerlink" title="[翻译]基于FPGA的Sobel边沿检测实现"></a>[翻译]基于FPGA的Sobel边沿检测实现</h1><p><em><a href="https://www.sciencedirect.com/science/article/abs/pii/S0141933116302289" target="_blank" rel="noopener">ScienceDirect</a></em></p>
-<h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1.Introduction"></a>1.Introduction</h2><p>边缘（Edge）是一幅图像上强度发生显著变化的地方。找到边缘可以帮助识别对象的位置和图像中特定实体的边界。在特征提取（Feature Extraction）和模式识别（Pattern Recognition）方面也是大有帮助。因此，边缘检测在计算机视觉方面非常重要。到目前为止，大多数研究人员都选择使用软件实现基本的边缘检测算法和一些变形算法。但是，这些方法已经被确定不是有效的实时应用系统的实现。边缘检测算法在硬件平台上的实现对于实时性更加高效。随着超大规模集成技术的发展，硬件实现为软件中并行处理子程序的实现提供了一种方法。因此，硬件实现相对于软件来说，提供了更快的可替代方法。1994年Boo等人提出了使用VLSI技术在ASIC中使用Sobel算子来进行边沿检测的硬件实现。在过去的几年中，使用FPGA实现边沿检测算法的研究反过促进了实时图像处理的研究。在2009年时设计了实时算法，在FPGA板子上进行边缘检测，使用VLSI技术，在一颗硅片上集成10K-100K的晶体管，任何算法的并行化都有可能实现。所有的嵌入式系统都在ASIC或FPGA上设计与实现。</p>
-<p>FPGA是一种具有可配置逻辑块(CLBs)的IC。根据需要的操作，CLB使用硅片上的路由通道进行互联。内部连接可以使用硬件描述语言(HDL)进行配置，比如VHDL或Verilog。如图一所示，硅片由输入/输出端口组成，在边界上提供输入和输出。Abbasi等人在2007年提出了一种在FPGA上实现Sobel边缘检测的架构。在2012年，这个架构被Halder等人证明在空间和时间复杂度方面效率很低。他们提出了一种时间和时间空间复杂度小于Abbasi等人的体系结构。然而，这个架构在像素的冗余存储方面也有缺点，这种架构的精简的实现方法。本文的目的就是克服这些缺点。</p>
-<p><img src="http://pb8y9dvcx.bkt.clouddn.com/18-10-18/81411488.jpg" alt=""></p>
-<p>目前工作领域的贡献如下:</p>
-<ul>
-<li>为了降低卷积过程中的空间复杂度，提出了一种8位结构来检索卷积过程中所涉及像素的地址。</li>
-<li>为了降低Sobel边缘检测算法的时间复杂度，通过替换Halder等人提出的体系结构中的一些组件来改进体系结构。</li>
-</ul>
-<p>本文的组织如下。第2节简要介绍了Sobel边缘检测算法。第3节提出了传统的Sobel边缘检测算法的改进版本。第4节描述了本文所采用的方法。第5节给出了实验结果和讨论。最后，第6节总结了这项工作。</p>
-<h2 id="2-Sobel边沿检测算法"><a href="#2-Sobel边沿检测算法" class="headerlink" title="2.Sobel边沿检测算法"></a>2.Sobel边沿检测算法</h2><p>Sobel边缘检测算法是一种基于梯度的边缘检测方法，采用水平掩码(HM)和垂直掩码(VM)进行边缘检测。一个掩模是另一个的转置，如下所示：<br>$$<br>VM=\begin{bmatrix}</p>
-<pre><code>-1&amp;-2&amp;-1\\\
-
-0&amp;0&amp;0\\\
-
-1&amp;2&amp;1
-
-\end{bmatrix}
-</code></pre><p>$$</p>
-<p>$$<br>HM=\begin{bmatrix}</p>
-<pre><code>-1 &amp;0&amp;1\\\
-
--2&amp;0&amp;2\\\
-
--1&amp;0&amp;1
-
-\end{bmatrix}
-</code></pre><p>$$</p>
-<p>对于卷积过程，<strong>分别使用HM和VM对图像从左到右、从上到下进行扫描</strong>。卷积是将图像的每一个强度值与它的局部邻居相乘，用掩模加权的过程。让$ {P}_{3*3}$的成为一幅图像的sub-window，如图2中，分别与HM和VM进行卷积。</p>
-<p><img src="http://pb8y9dvcx.bkt.clouddn.com/18-10-18/89308826.jpg" alt=""></p>
-<p>由Eqs给出子窗口中心像素(P4)的水平梯度Gx和垂直梯度Gy。(1)和(2)分别。<br>$$<br>G_x = f_1- f_2\tag{1}<br>$$</p>
-<p>$$<br>其中，f_1 = (P_6+2×P_7+P_8),f_2 = (P_0+2×P_1+P_2)<br>$$</p>
-<p>$$<br>G_y = f_3- f_4\tag{2}<br>$$</p>
-<p>$$<br>其中，f_3 = (P_2+2×P_5+P_8),f_4 = (P_0+2×P_3+P_6)<br>$$</p>
-<p>子窗口中心像素的合成梯度为：<br>$$<br>G =|G_x|+|G_y|\tag{3}<br>$$<br>通过与预定义的阈值进行比较，进一步利用P4的梯度来确定它是否是边缘像素。如果P4的梯度大于阈值，则将P4视为边缘像素(记为1)，否则将P4视为非边缘像素(记为0)，如式4所示。<br>$$<br>D_op =<br>\begin{cases}<br>1 \qquad &amp; if G \gt t \<br>0 \qquad &amp; otherwise<br>\end{cases}\tag{4}<br>$$</p>
-<h2 id="3-传统Sobel边沿检测算法的简化"><a href="#3-传统Sobel边沿检测算法的简化" class="headerlink" title="3.传统Sobel边沿检测算法的简化"></a>3.传统Sobel边沿检测算法的简化</h2><p>传统的Sobel边缘检测算法需要做一些调整，因为在硬件实现上采用了8位架构。Halder等人对传统算法进行了简化，Halder等人提出的算法简化版本做了一些修改。在Eq.(1)中，当子窗口的每个贡献像素都有最大的强度值时，f1和f2的值最大，即255。同样发生在f3,f4 。所以f1,f2,f3,f4 的最大可能值是4×255,因此它需要10位架构实现。为了解决这个问题，f1, f2, f3和f4的值被限制在原来值的四分之一。因此，在计算f1、f2、f3和f4的值之前，每个贡献的像素必须除以4，如Eqs所示。(5)-(8)。<br>$$<br>f_1 = \frac{1}{4}P_6+\frac{1}{4}P_7+\frac{1}{4}P_8\tag{5}<br>$$</p>
-<p>$$<br>f_2 = \frac{1}{4}P_0+\frac{1}{4}P_1+\frac{1}{4}P_2\tag{6}<br>$$</p>
-<p>$$<br>f_3 = \frac{1}{4}P_2+\frac{1}{4}P_5+\frac{1}{4}P_8\tag{7}<br>$$</p>
-<p>$$<br>f_4 = \frac{1}{4}P_0+\frac{1}{4}P_3+\frac{1}{4}P_6\tag{8}<br>$$</p>
-<p>由于同样的原因，Gx和Gy必须除以2，G的新方程为:]<br>$$<br>G =\frac{1}{2}|G_x|-\frac{1}{2}|G_y|\tag{9}<br>$$<br>公式1~3可以写为：<br>$$<br>G_x = f_1- f_2\tag{10}<br>$$</p>
-<p>$$<br>其中，f_1 = (\frac{1}{8}P_6+\frac{1}{4}P_7+\frac{1}{8}P_8),f_2 = (\frac{1}{8}P_0+\frac{1}{4}P_1+\frac{1}{8}P_2)<br>$$</p>
-<p>$$<br>G_y = f_3- f_4\tag{11}<br>$$</p>
-<p>$$<br>其中，f_3 = (\frac{1}{8}P_2+\frac{1}{4}P_5+\frac{1}{8}P_8),f_4 = (\frac{1}{8}P_0+\frac{1}{4}P_3+\frac{1}{8}P_6)<br>$$</p>
-<p>由于Gx和Gy的绝对值是在Eq.(3)中计算出来的，所以需要考虑以下四种情况。</p>
-<ul>
-<li>Case 1: If both Gx and Gy are positive——$G_1 = f_5 - f_6$</li>
-<li>Case 2: If Gx is positive and Gy is negative.——$G_2 = f_7 - f_8$</li>
-<li>Case 3: If Gx is negative and Gy is positive.——$G_3 = f_8 - f_7$</li>
-<li>Case 4: If Gx and Gy are both negative.——$G_4 = f_6 - f_5$</li>
-</ul>
-<p>在特定的时刻，四分之一的情况是正确的，其余的情况是错误的。假设，如果情形1为真，那么f1和f3分别大于或等于f2和f4。因此，在这种情况下，G1是最大的，它被认为是子窗口中心像素(P4)的合成梯度G。这四种情况互不相容。反过来，可以观察到G的值将是4个可能值的最大值，可以用公式(16)表示。<br>$$<br>G = max(G_1,G_2,G_3,G_4)=max(|f_5-f_6|,|f_7-f_8|)=max(f_9,f_10)\tag{16}<br>$$<br><img src="http://pb8y9dvcx.bkt.clouddn.com/18-10-18/50764853.jpg" alt=""></p>
-<h2 id="4-方法论"><a href="#4-方法论" class="headerlink" title="4.方法论"></a>4.方法论</h2><h2 id="5-实验结果及分析"><a href="#5-实验结果及分析" class="headerlink" title="5.实验结果及分析"></a>5.实验结果及分析</h2><h2 id="6-结论"><a href="#6-结论" class="headerlink" title="6.结论"></a>6.结论</h2>
-          
+          Markdown For TyporaOverviewMarkdown is created by Daring Fireball, the original guideline is here. Its syntax, however, varies between different parse
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/18/Markdown-For-Typora/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -586,339 +564,21 @@
       
         
           
-            <h1 id="Hexo搭建博客"><a href="#Hexo搭建博客" class="headerlink" title="Hexo搭建博客"></a>Hexo搭建博客</h1><h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><ol>
-<li><p><code>Git</code>。</p>
-<ul>
-<li><a href="https://gitforwindows.org/" target="_blank" rel="noopener">Git官网地址</a>、<a href="https://github.com/waylau/git-for-win" target="_blank" rel="noopener">Git for Windows 国内下载站</a></li>
-<li>检查是否安装成功。<code>git version</code></li>
-<li>配置Git。在GitBash中配置GitHub账户信息<ul>
-<li>配置账号——<code>git config --global user.name &quot;my_account_name&quot;</code></li>
-<li>配置邮箱——<code>git config --global user.email my_qq_email</code></li>
-<li>创建SSH。在gitbash中输入：<code>ssh-keygen -t rsa -C &quot;youremail@example.com</code>，生成SSH。然后在<code>.ssh</code>文件夹下找到<code>id_rsa.pub</code>文件，把里面的内容复制到GitHub→“创建SSH Keys”。</li>
-<li>在gitbash中验证是否添加成功：<code>ssh -T git@github.com</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><code>Node.js</code></p>
-<ul>
-<li><p><a href="https://nodejs.org/en/" target="_blank" rel="noopener">官网地址</a></p>
-</li>
-<li><p>查看版本。<code>node -v</code></p>
-</li>
-<li><p>配置<code>NPM</code>为国内下载镜像——<a href="https://npm.taobao.org/" target="_blank" rel="noopener">淘宝 NPM 镜像</a>，命令行替代：使用<code>cnpm</code>替代<code>npm</code>。</p>
-<p><code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></p>
-</li>
-</ul>
-</li>
-<li><p><code>Hexo</code></p>
-<ul>
-<li><p>先创建一个文件夹（用来存放所有blog的东西），然后在GitBash中<code>cd</code>到该文件夹下。</p>
-</li>
-<li><p>安装Hexo命令：<code>cnpm i -g hexo</code></p>
-</li>
-<li><p>安装完成后，查看版本：<code>hexo -v</code></p>
-</li>
-<li><p>初始化命令：<code>hexo init</code></p>
-</li>
-</ul>
-<p>-</p>
-</li>
-</ol>
-<h2 id="搭桥到GitHub"><a href="#搭桥到GitHub" class="headerlink" title="搭桥到GitHub"></a>搭桥到GitHub</h2><p>在GitHub账户里创建一个repo，名称为<code>yourname.github.io</code>, 其中yourname是你的github名称。</p>
-<p>打开<code>my_repo—_config.yml</code>文件，修改配置：</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repo:</span> <span class="attr">https://github.com/Your_github_Name/Your_github_Name.github.io.git</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
-<p>回到gitbash中，进入你的blog目录，分别执行以下命令：</p>
-<p><code>hexo clean
-hexo generate
-hexo server</code></p>
-<p>在GitHub中安装：<code>npm i hexo-server</code></p>
-<p>打开浏览器输入：<code>http://localhost:4000</code>就可以看到自己搭建的博客了。</p>
-<h3 id="Hexo常用命令"><a href="#Hexo常用命令" class="headerlink" title="Hexo常用命令"></a>Hexo常用命令</h3><h2 id="init"><a href="#init" class="headerlink" title="init"></a>init</h2><p><code>hexo init [folder]</code></p>
-<h2 id="new"><a href="#new" class="headerlink" title="new"></a>new</h2><p><code>hexo new [layout] &lt;title&gt;</code></p>
-<p>新建一篇文章。如果没有设置 layout 的话，默认使用 <code>_config.yml</code>中的 default_layout 参数代替。如果标题包含空格的话，请使用引号括起来。</p>
-<h2 id="generate生成静态文件"><a href="#generate生成静态文件" class="headerlink" title="generate生成静态文件"></a>generate生成静态文件</h2><p><code>hexo generate</code></p>
-<p>简写为</p>
-<p><code>hexo g</code></p>
-<h2 id="server——启动服务器"><a href="#server——启动服务器" class="headerlink" title="server——启动服务器"></a>server——启动服务器</h2><p><code>hexo server</code></p>
-<p>简写为</p>
-<p><code>hexo s</code></p>
-<h2 id="deploy"><a href="#deploy" class="headerlink" title="deploy"></a>deploy</h2><p><code>hexo deploy</code></p>
-<p>部署网站。</p>
-<p>简写为</p>
-<p><code>hexo d</code></p>
-<p><code>hexo d -g #部署前生成静态文件</code></p>
-<h2 id="clean——清除缓存文件"><a href="#clean——清除缓存文件" class="headerlink" title="clean——清除缓存文件"></a>clean——清除缓存文件</h2>
-          
-        
-      
-    </div>
-    
-    
-    
+          Hexo搭建博客环境准备
+Git。
 
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/18/Markdown-For-Typora/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张嘉良">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhangjialiang_yue">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/18/Markdown-For-Typora/" itemprop="url">Markdown For Typora</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-18T22:54:09+08:00">
-                2018-10-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Markdown/" itemprop="url" rel="index">
-                    <span itemprop="name">Markdown</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Markdown-For-Typora"><a href="#Markdown-For-Typora" class="headerlink" title="Markdown For Typora"></a>Markdown For Typora</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p><strong>Markdown</strong> is created by <a href="http://daringfireball.net/" target="_blank" rel="noopener">Daring Fireball</a>, the original guideline is <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank" rel="noopener">here</a>. Its syntax, however, varies between different parsers or editors. <strong>Typora</strong> is using <a href="https://help.github.com/articles/github-flavored-markdown/" target="_blank" rel="noopener">GitHub Flavored Markdown</a>. </p>
-<p><em>Outline</em></p>
-<p>[TOC]</p>
-<h2 id="Block-Elements"><a href="#Block-Elements" class="headerlink" title="Block Elements"></a>Block Elements</h2><h3 id="Paragraph-and-line-breaks"><a href="#Paragraph-and-line-breaks" class="headerlink" title="Paragraph and line breaks"></a>Paragraph and line breaks</h3><p>A paragraph is simply one or more consecutive lines of text. In markdown source code, paragraphs are separated by more than one blank lines. In Typora, you only need to press <code>Return</code> to create a new paragraph.</p>
-<p>Press <code>Shift</code> + <code>Return</code> to create a single line break. However, most markdown parser will ignore single line break, to make other markdown parsers recognize your line break, you can leave two whitespace at the end of the line, or insert <code>&lt;br/&gt;</code>.</p>
-<h3 id="Headers"><a href="#Headers" class="headerlink" title="Headers"></a>Headers</h3><p>Headers use 1-6 hash characters at the start of the line, corresponding to header levels 1-6. For example:</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># This is an H1</span></span><br><span class="line"></span><br><span class="line"><span class="section">## This is an H2</span></span><br><span class="line"></span><br><span class="line"><span class="section">###### This is an H6</span></span><br></pre></td></tr></table></figure>
-<p>In typora, input ‘#’s followed by title content, and press <code>Return</code> key will create a header.</p>
-<h3 id="Blockquotes"><a href="#Blockquotes" class="headerlink" title="Blockquotes"></a>Blockquotes</h3><p>Markdown uses email-style &gt; characters for block quoting. They are presented as:</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="quote">&gt; This is a blockquote with two paragraphs. This is first paragraph.</span></span><br><span class="line">&gt;</span><br><span class="line"><span class="quote">&gt; This is second pragraph.Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="quote">&gt; This is another blockquote with one paragraph. There is three empty line to seperate two blockquote.</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>This is a blockquote with two paragraphs. This is first paragraph.</p>
-<p>This is second pragraph.Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.</p>
-</blockquote>
-<blockquote>
-<p>This is another blockquote with one paragraph. There is three empty line to seperate two blockquote.</p>
-</blockquote>
-<p>In typora, just input ‘&gt;’ followed by quote contents a block quote is  generated. Typora will insert proper ‘&gt;’ or line break for you. Block quote inside anther block quote is allowed by adding additional levels of ‘&gt;’. </p>
-<h3 id="Lists"><a href="#Lists" class="headerlink" title="Lists"></a>Lists</h3><p>Input <code>* list item 1</code> will create an un-ordered list, the <code>*</code> symbol can be replace with <code>+</code> or <code>-</code>. </p>
-<p>Input <code>1. list item 1</code> will create an ordered list, their markdown source code is like:</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">## un-ordered list</span></span><br><span class="line"><span class="bullet">*   </span>Red</span><br><span class="line"><span class="bullet">*   </span>Green</span><br><span class="line"><span class="bullet">*   </span>Blue</span><br><span class="line"></span><br><span class="line"><span class="section">## ordered list</span></span><br><span class="line"><span class="bullet">1.  </span>Red</span><br><span class="line"><span class="bullet">2. 	</span>Green</span><br><span class="line"><span class="bullet">3.	</span>Blue</span><br></pre></td></tr></table></figure>
-<h3 id="Task-List"><a href="#Task-List" class="headerlink" title="Task List"></a>Task List</h3><p>Task lists are lists with items marked as either [ ] or [x] (incomplete or complete). For example:</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">- </span>[ ] a task list item</span><br><span class="line"><span class="bullet">- </span>[ ] list syntax required</span><br><span class="line"><span class="bullet">- </span>[ ] normal <span class="strong">**formatting**</span>, @mentions, #1234 refs</span><br><span class="line"><span class="bullet">- </span>[ ] incomplete</span><br><span class="line"><span class="bullet">- </span>[x] completed</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>[ ] a task list item</p>
-</li>
-<li><p>[ ] list syntax required</p>
-</li>
-<li><p>[ ] normal <strong>formatting</strong>, @mentions, #1234 refs</p>
-</li>
-<li><p>[ ] incomplete</p>
-</li>
-<li><p>[x] completed</p>
-<p><code>- [ ]</code></p>
-</li>
-</ul>
-<p>You can change the complete/incomplete state by click the checkbox before the item.</p>
-<h3 id="Fenced-Code-Blocks"><a href="#Fenced-Code-Blocks" class="headerlink" title="(Fenced) Code Blocks"></a>(Fenced) Code Blocks</h3><p>Typora only support fences in Github Flavored Markdown. Original code blocks in markdown is not supported.</p>
-<p>Using fences is easy: Input ``` and press <code>return</code>. Add an optional language identifier after ``` and we’ll run it through syntax highlighting:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Here&apos;s an example:</span><br><span class="line"></span><br><span class="line">```</span><br><span class="line">function test() &#123;</span><br><span class="line">  console.log(&quot;notice the blank line before this function?&quot;);</span><br><span class="line">&#125;</span><br><span class="line">```</span><br><span class="line"></span><br><span class="line">syntax highlighting:</span><br><span class="line">```ruby</span><br><span class="line">require &apos;redcarpet&apos;</span><br><span class="line">markdown = Redcarpet.new(&quot;Hello World!&quot;)</span><br><span class="line">puts markdown.to_html</span><br><span class="line">```</span><br></pre></td></tr></table></figure>
-<h3 id="Math-Blocks"><a href="#Math-Blocks" class="headerlink" title="Math Blocks"></a>Math Blocks</h3><p>You can render <em>LaTeX</em> mathematical expressions using <strong>MathJax</strong>.</p>
-<p>Input <code>$$</code>, then press ‘Return’ key will trigger an input field which accept <em>Tex/LaTex</em> source. Following is an example:<br>$$<br>\mathbf{V}_1 \times \mathbf{V}_2 =  \begin{vmatrix}<br>\mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \<br>\frac{\partial X}{\partial u} &amp;  \frac{\partial Y}{\partial u} &amp; 0 \<br>\frac{\partial X}{\partial v} &amp;  \frac{\partial Y}{\partial v} &amp; 0 \<br>\end{vmatrix}<br>$$<br>In markdown source file, math block is <em>LaTeX</em> expression wrapped by ‘$$’ mark:</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\mathbf&#123;V&#125;<span class="emphasis">_1 \times \mathbf&#123;V&#125;_</span>2 =  \begin&#123;vmatrix&#125; </span><br><span class="line">\mathbf&#123;i&#125; &amp; \mathbf&#123;j&#125; &amp; \mathbf&#123;k&#125; \\</span><br><span class="line">\frac&#123;\partial X&#125;&#123;\partial u&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial u&#125; &amp; 0 \\</span><br><span class="line">\frac&#123;\partial X&#125;&#123;\partial v&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial v&#125; &amp; 0 \\</span><br><span class="line">\end&#123;vmatrix&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-<h3 id="Tables"><a href="#Tables" class="headerlink" title="Tables"></a>Tables</h3><p>Input <code>| First Header  | Second Header |</code> and press <code>return</code> key will create a table with two column.</p>
-<p>After table is created, focus on that table will pop up a toolbar for table, where you can resize, align, or delete table. You can also use context menu to copy and add/delete column/row.</p>
-<p>Following descriptions can be skipped, as markdown source code for tables are generated by typora automatically.</p>
-<p>In markdown source code, they look like:</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">| First Header  | Second Header |</span><br><span class="line">| ------------- | ------------- |</span><br><span class="line">| Content Cell  | Content Cell  |</span><br><span class="line">| Content Cell  | Content Cell  |</span><br></pre></td></tr></table></figure>
-<p>You can also include inline Markdown such as links, bold, italics, or strikethrough.</p>
-<p>Finally, by including colons : within the header row, you can define text to be left-aligned, right-aligned, or center-aligned:</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">| Left-Aligned  | Center Aligned  | Right Aligned |</span><br><span class="line">| :------------ |:---------------:| -----:|</span><br><span class="line">| col 3 is      | some wordy text | $1600 |</span><br><span class="line">| col 2 is      | centered        |   $12 |</span><br><span class="line">| zebra stripes | are neat        |    $1 |</span><br></pre></td></tr></table></figure>
-<p>A colon on the left-most side indicates a left-aligned column; a colon on the right-most side indicates a right-aligned column; a colon on both sides indicates a center-aligned column.</p>
-<h3 id="Footnotes"><a href="#Footnotes" class="headerlink" title="Footnotes"></a>Footnotes</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">You can create footnotes like this[^footnote].</span><br><span class="line"></span><br><span class="line">[<span class="symbol">^footnote</span>]: <span class="link">Here is the *text* of the **footnote**.</span></span><br></pre></td></tr></table></figure>
-<p>will produce:</p>
-<p>You can create footnotes like this[^footnote].</p>
-<p>[^footnote]: Here is the <em>text</em> of the <strong>footnote</strong>.</p>
-<p>Mouse on the ‘footnote’ superscript to see content of the footnote.</p>
-<h3 id="Horizontal-Rules"><a href="#Horizontal-Rules" class="headerlink" title="Horizontal Rules"></a>Horizontal Rules</h3><p>Input <code>***</code> or <code>---</code> on a blank line and press <code>return</code> will draw a horizontal line.</p>
-<hr>
-<h3 id="YAML-Front-Matter"><a href="#YAML-Front-Matter" class="headerlink" title="YAML Front Matter"></a>YAML Front Matter</h3><p>Typora support <a href="http://jekyllrb.com/docs/frontmatter/" target="_blank" rel="noopener">YAML Front Matter</a> now. Input <code>---</code> at the top of the article and then press <code>Enter</code> will introduce one. Or insert one metadata block from the menu.</p>
-<h3 id="Table-of-Contents-TOC"><a href="#Table-of-Contents-TOC" class="headerlink" title="Table of Contents (TOC)"></a>Table of Contents (TOC)</h3><p>Input <code>[toc]</code> then press <code>Return</code> key will create a section for “Table of Contents” extracting all headers from one’s writing, its contents will be updated automatically. </p>
-<h3 id="Diagrams-Sequence-Flowchart-and-Mermaid"><a href="#Diagrams-Sequence-Flowchart-and-Mermaid" class="headerlink" title="Diagrams (Sequence, Flowchart and Mermaid)"></a>Diagrams (Sequence, Flowchart and Mermaid)</h3><p>Typora supports, <a href="https://bramp.github.io/js-sequence-diagrams/" target="_blank" rel="noopener">sequence</a>, <a href="http://flowchart.js.org/" target="_blank" rel="noopener">flowchart</a> and <a href="https://knsv.github.io/mermaid/#mermaid" target="_blank" rel="noopener">mermaid</a>, after this feature is enabled from preference panel.</p>
-<p>See this <a href="http://support.typora.io/Draw-Diagrams-With-Markdown/" target="_blank" rel="noopener">document</a> for detail.</p>
-<h2 id="Span-Elements"><a href="#Span-Elements" class="headerlink" title="Span Elements"></a>Span Elements</h2><p>Span elements will be parsed and rendered right after your typing. Moving cursor in middle of those span elements will expand those elements into markdown source. Following will explain the syntax of those span element.</p>
-<h3 id="Links"><a href="#Links" class="headerlink" title="Links"></a>Links</h3><p>Markdown supports two style of links: inline and reference.</p>
-<p>In both styles, the link text is delimited by [square brackets].</p>
-<p>To create an inline link, use a set of regular parentheses immediately after the link text’s closing square bracket. Inside the parentheses, put the URL where you want the link to point, along with an optional title for the link, surrounded in quotes. For example:</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">This is [<span class="string">an example</span>](<span class="link">http://example.com/ "Title"</span>) inline link.</span><br><span class="line"></span><br><span class="line">[<span class="string">This link</span>](<span class="link">http://example.net/</span>) has no title attribute.</span><br></pre></td></tr></table></figure>
-<p>will produce:</p>
-<p>This is <a href="http://example.com/&quot;Title&quot;" target="_blank" rel="noopener">an example</a> inline link. (<code>&lt;p&gt;This is &lt;a href=&quot;http://example.com/&quot; title=&quot;Title&quot;&gt;</code>)</p>
-<p><a href="http://example.net/" target="_blank" rel="noopener">This link</a> has no title attribute. (<code>&lt;p&gt;&lt;a href=&quot;http://example.net/&quot;&gt;This link&lt;/a&gt; has no</code>)</p>
-<h4 id="Internal-Links"><a href="#Internal-Links" class="headerlink" title="Internal Links"></a>Internal Links</h4><p><strong>You can set the href to headers</strong>, which will create a bookmark that allow you to jump to that section after clicking. For example:</p>
-<p>Command(on Windows: Ctrl) + Click <a href="#block-elements">This link</a> will jump to header <code>Block Elements</code>. To see how to write that, please move cursor or click that link with <code>⌘</code> key pressed to expand the element into markdown source.</p>
-<h4 id="Reference-Links"><a href="#Reference-Links" class="headerlink" title="Reference Links"></a>Reference Links</h4><p>Reference-style links use a second set of square brackets, inside which you place a label of your choosing to identify the link:</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">This is [<span class="string">an example</span>][<span class="symbol">id</span>] reference-style link.</span><br><span class="line"></span><br><span class="line">Then, anywhere in the document, you define your link label like this, on a line by itself:</span><br><span class="line"></span><br><span class="line">[<span class="symbol">id</span>]: <span class="link">http://example.com/  "Optional Title Here"</span></span><br></pre></td></tr></table></figure>
-<p>In typora, they will be rendered like:</p>
-<p>This is <a href="http://example.com/" title="Optional Title Here" target="_blank" rel="noopener">an example</a> reference-style link.</p>
-<p>The implicit link name shortcut allows you to omit the name of the link, in which case the link text itself is used as the name. Just use an empty set of square brackets — e.g., to link the word “Google” to the google.com web site, you could simply write:</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">Google</span>][<span class="symbol"></span>]</span><br><span class="line">And then define the link:</span><br><span class="line"></span><br><span class="line">[<span class="symbol">Google</span>]: <span class="link">http://google.com/</span></span><br></pre></td></tr></table></figure>
-<p>In typora click link will expand it for editing, command+click will open the hyperlink in web browser.</p>
-<h3 id="URLs"><a href="#URLs" class="headerlink" title="URLs"></a>URLs</h3><p>Typora allows you to insert urls as links, wrapped by <code>&lt;</code>brackets<code>&gt;</code>.</p>
-<p><code>&lt;i@typora.io&gt;</code> becomes <a href="mailto:&#x69;&#x40;&#x74;&#x79;&#112;&#111;&#114;&#97;&#46;&#x69;&#111;" target="_blank" rel="noopener">&#x69;&#x40;&#x74;&#x79;&#112;&#111;&#114;&#97;&#46;&#x69;&#111;</a>.</p>
-<p>Typora will aslo auto link standard URLs. e.g: <a href="http://www.google.com" target="_blank" rel="noopener">www.google.com</a>.</p>
-<h3 id="Images"><a href="#Images" class="headerlink" title="Images"></a>Images</h3><p>Image looks similar with links, but it requires an additional <code>!</code> char before the start of link. Image syntax looks like this:</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">Alt text</span>](<span class="link">/path/to/img.jpg</span>)</span><br><span class="line"></span><br><span class="line">![<span class="string">Alt text</span>](<span class="link">/path/to/img.jpg "Optional title"</span>)</span><br></pre></td></tr></table></figure>
-<p>You are able to use drag &amp; drop to insert image from image file or we browser. And modify the markdown source code by clicking on the image. Relative path will be used if image is in same directory or sub-directory with current editing document when drag &amp; drop.</p>
-<p>For more tips on images, please read <a href="http://support.typora.io//Images/" target="_blank" rel="noopener">http://support.typora.io//Images/</a></p>
-<h3 id="Emphasis"><a href="#Emphasis" class="headerlink" title="Emphasis"></a>Emphasis</h3><p>Markdown treats asterisks (<code>*</code>) and underscores (<code>_</code>) as indicators of emphasis. Text wrapped with one <code>*</code> or <code>_</code> will be wrapped with an HTML <code>&lt;em&gt;</code> tag. E.g:</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="emphasis">*single asterisks*</span></span><br><span class="line"></span><br><span class="line"><span class="emphasis">_single underscores_</span></span><br></pre></td></tr></table></figure>
-<p>output: </p>
-<p><em>single asterisks</em></p>
-<p><em>single underscores</em></p>
-<p>GFM will ignores underscores in words, which is commonly used in code and names, like this:</p>
-<blockquote>
-<p>wow_great_stuff</p>
-<p>do_this_and_do_that_and_another_thing.</p>
-</blockquote>
-<p>To produce a literal asterisk or underscore at a position where it would otherwise be used as an emphasis delimiter, you can backslash escape it:</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\<span class="emphasis">*this text is surrounded by literal asterisks\*</span></span><br></pre></td></tr></table></figure>
-<p>Typora recommends to use <code>*</code> symbol.</p>
-<h3 id="Strong"><a href="#Strong" class="headerlink" title="Strong"></a>Strong</h3><p>double *’s or _’s will be wrapped with an HTML <code>&lt;strong&gt;</code> tag, e.g:</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="strong">**double asterisks**</span></span><br><span class="line"></span><br><span class="line"><span class="strong">__double underscores__</span></span><br></pre></td></tr></table></figure>
-<p>output:</p>
-<p><strong>double asterisks</strong></p>
-<p><strong>double underscores</strong></p>
-<p>Typora recommends to use <code>**</code> symbol.</p>
-<h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><p>To indicate a span of code, wrap it with backtick quotes (`). Unlike a pre-formatted code block, a code span indicates code within a normal paragraph. For example:</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Use the <span class="code">`printf()`</span> function.</span><br></pre></td></tr></table></figure>
-<p>will produce:</p>
-<p>Use the <code>printf()</code> function.</p>
-<h3 id="Strikethrough"><a href="#Strikethrough" class="headerlink" title="Strikethrough"></a>Strikethrough</h3><p>GFM adds syntax to create strikethrough text, which is missing from standard Markdown.</p>
-<p><code>~~Mistaken text.~~</code> becomes <del>Mistaken text.</del></p>
-<h3 id="Underline"><a href="#Underline" class="headerlink" title="Underline"></a>Underline</h3><p>Underline is powered by raw HTML.</p>
-<p><code>&lt;u&gt;Underline&lt;/u&gt;</code> becomes <u>Underline</u>.</p>
-<h3 id="Emoji-smile"><a href="#Emoji-smile" class="headerlink" title="Emoji :smile:"></a>Emoji :smile:</h3><p>Input emoji with syntax <code>:smile:</code>. </p>
-<p>User can trigger auto-complete suggestions for emoji by pressing <code>ESC</code> key, or trigger it automatically after enable it on preference panel. Also, input UTF8 emoji char directly from <code>Edit</code> -&gt; <code>Emoji &amp; Symbols</code> from menu bar is also supported. </p>
-<h3 id="Inline-Math"><a href="#Inline-Math" class="headerlink" title="Inline Math"></a>Inline Math</h3><p>To use this feature, first, please enable it in <code>Preference</code> Panel -&gt; <code>Markdown</code> Tab. Then use <code>$</code> to wrap TeX command, for example: <code>$\lim_{x \to \infty} \exp(-x) = 0$</code> will be rendered as LaTeX command. </p>
-<p>To trigger inline preview for inline math: input “$”, then press <code>ESC</code> key, then input TeX command, a preview tooltip will be visible like below:</p>
-<p><img src="http://typora.io/img/inline-math.gif" style="zoom:50%;"></p>
-<h3 id="Subscript"><a href="#Subscript" class="headerlink" title="Subscript"></a>Subscript</h3><p>To use this feature, first, please enable it in <code>Preference</code> Panel -&gt; <code>Markdown</code> Tab. Then use <code>~</code> to wrap subscript content, for example: <code>H~2~O</code>, <code>X~long\ text~</code>/</p>
-<h3 id="Superscript"><a href="#Superscript" class="headerlink" title="Superscript"></a>Superscript</h3><p>To use this feature, first, please enable it in <code>Preference</code> Panel -&gt; <code>Markdown</code> Tab. Then use <code>^</code> to wrap superscript content, for example: <code>X^2^</code>.</p>
-<h3 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h3><p>To use this feature, first, please enable it in <code>Preference</code> Panel -&gt; <code>Markdown</code> Tab. Then use <code>==</code> to wrap superscript content, for example: <code>==highlight==</code>. </p>
-<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><p>You could use HTML to style content what pure Markdown does not support, for example, use <code>&lt;span style=&quot;color:red&quot;&gt;this text is red&lt;/span&gt;</code> to add text with red color.</p>
-<h3 id="Embed-Contents"><a href="#Embed-Contents" class="headerlink" title="Embed Contents"></a>Embed Contents</h3><p>Some websites provide iframe-based embed code which you could also paste into Typora, for example:</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe height='265' scrolling='no' title='Fancy Animated SVG Menu' src='http://codepen.io/jeangontijo/embed/OxVywj/?height=265&amp;theme-id=0&amp;default-tab=css,result&amp;embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'&gt;&lt;/iframe&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="Video"><a href="#Video" class="headerlink" title="Video"></a>Video</h3><p>You could use the <code>&lt;video&gt;</code> HTML tag to embed videos, for example:</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;video src="xxx.mp4" /&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="Other-HTML-Support"><a href="#Other-HTML-Support" class="headerlink" title="Other HTML Support"></a>Other HTML Support</h3><p>You could find details <a href="http://support.typora.io/HTML/" target="_blank" rel="noopener">here</a>.</p>
-
-          
+Git官网地址、Git for Windows 国内下载站
+检查是否安装成功。git version
+配置Git。在GitBash中配置GitHub账户信息
+配置账号——git config --global user.name &quot;my_account
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/18/Hexo搭建博客/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1036,17 +696,15 @@ hexo server</code></p>
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/18/hello-world/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1126,7 +784,7 @@ hexo server</code></p>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
