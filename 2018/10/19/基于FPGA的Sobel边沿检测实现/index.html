@@ -123,21 +123,21 @@
 
 
 
-<meta name="description" content="[翻译]基于FPGA的Sobel边沿检测实现ScienceDirect 1.Introduction边缘（Edge）是一幅图像上强度发生显著变化的地方。找到边缘可以帮助识别对象的位置和图像中特定实体的边界。在特征提取（Feature Extraction）和模式识别（Pattern Recognition）方面也是大有帮助。因此，边缘检测在计算机视觉方面非常重要。到目前为止，大多数研究人员都选择使">
+<meta name="description" content="[翻译]基于FPGA的Sobel边沿检测实现ScienceDirect 1.Introduction边缘（Edge）是一幅图像上强度发生显著变化的地方。找到边缘可以帮助识别对象的位置和图像中特定实体的边界。在特征提取（Feature Extraction）和模式识别（Pattern Recognition）方面也是大有帮助。因此，边缘检测在计算机视觉方面非常重要。">
 <meta name="keywords" content="FPGA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于FPGA的Sobel边沿检测实现">
 <meta property="og:url" content="http://yoursite.com/2018/10/19/基于FPGA的Sobel边沿检测实现/index.html">
 <meta property="og:site_name" content="zhangjialiang_yue">
-<meta property="og:description" content="[翻译]基于FPGA的Sobel边沿检测实现ScienceDirect 1.Introduction边缘（Edge）是一幅图像上强度发生显著变化的地方。找到边缘可以帮助识别对象的位置和图像中特定实体的边界。在特征提取（Feature Extraction）和模式识别（Pattern Recognition）方面也是大有帮助。因此，边缘检测在计算机视觉方面非常重要。到目前为止，大多数研究人员都选择使">
+<meta property="og:description" content="[翻译]基于FPGA的Sobel边沿检测实现ScienceDirect 1.Introduction边缘（Edge）是一幅图像上强度发生显著变化的地方。找到边缘可以帮助识别对象的位置和图像中特定实体的边界。在特征提取（Feature Extraction）和模式识别（Pattern Recognition）方面也是大有帮助。因此，边缘检测在计算机视觉方面非常重要。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://pb8y9dvcx.bkt.clouddn.com/18-10-18/81411488.jpg">
 <meta property="og:image" content="http://pb8y9dvcx.bkt.clouddn.com/18-10-18/89308826.jpg">
 <meta property="og:image" content="http://pb8y9dvcx.bkt.clouddn.com/18-10-18/50764853.jpg">
-<meta property="og:updated_time" content="2018-10-18T18:56:10.445Z">
+<meta property="og:updated_time" content="2018-10-18T19:18:22.845Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于FPGA的Sobel边沿检测实现">
-<meta name="twitter:description" content="[翻译]基于FPGA的Sobel边沿检测实现ScienceDirect 1.Introduction边缘（Edge）是一幅图像上强度发生显著变化的地方。找到边缘可以帮助识别对象的位置和图像中特定实体的边界。在特征提取（Feature Extraction）和模式识别（Pattern Recognition）方面也是大有帮助。因此，边缘检测在计算机视觉方面非常重要。到目前为止，大多数研究人员都选择使">
+<meta name="twitter:description" content="[翻译]基于FPGA的Sobel边沿检测实现ScienceDirect 1.Introduction边缘（Edge）是一幅图像上强度发生显著变化的地方。找到边缘可以帮助识别对象的位置和图像中特定实体的边界。在特征提取（Feature Extraction）和模式识别（Pattern Recognition）方面也是大有帮助。因此，边缘检测在计算机视觉方面非常重要。">
 <meta name="twitter:image" content="http://pb8y9dvcx.bkt.clouddn.com/18-10-18/81411488.jpg">
 
 
@@ -455,8 +455,7 @@
 
       
         <h1 id="翻译-基于FPGA的Sobel边沿检测实现"><a href="#翻译-基于FPGA的Sobel边沿检测实现" class="headerlink" title="[翻译]基于FPGA的Sobel边沿检测实现"></a>[翻译]基于FPGA的Sobel边沿检测实现</h1><p><em><a href="https://www.sciencedirect.com/science/article/abs/pii/S0141933116302289" target="_blank" rel="noopener">ScienceDirect</a></em></p>
-<h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1.Introduction"></a>1.Introduction</h2><p>边缘（Edge）是一幅图像上强度发生显著变化的地方。找到边缘可以帮助识别对象的位置和图像中特定实体的边界。在特征提取（Feature Extraction）和模式识别（Pattern Recognition）方面也是大有帮助。因此，边缘检测在计算机视觉方面非常重要。到目前为止，大多数研究人员都选择使用软件实现基本的边缘检测算法和一些变形算法。但是，这些方法已经被确定不是有效的实时应用系统的实现。边缘检测算法在硬件平台上的实现对于实时性更加高效。随着超大规模集成技术的发展，硬件实现为软件中并行处理子程序的实现提供了一种方法。因此，硬件实现相对于软件来说，提供了更快的可替代方法。1994年Boo等人提出了使用VLSI技术在ASIC中使用Sobel算子来进行边沿检测的硬件实现。在过去的几年中，使用FPGA实现边沿检测算法的研究反过促进了实时图像处理的研究。在2009年时设计了实时算法，在FPGA板子上进行边缘检测，使用VLSI技术，在一颗硅片上集成10K-100K的晶体管，任何算法的并行化都有可能实现。所有的嵌入式系统都在ASIC或FPGA上设计与实现。</p>
-<a id="more"></a>
+<h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1.Introduction"></a>1.Introduction</h2><p>边缘（Edge）是一幅图像上强度发生显著变化的地方。找到边缘可以帮助识别对象的位置和图像中特定实体的边界。在特征提取（Feature Extraction）和模式识别（Pattern Recognition）方面也是大有帮助。因此，边缘检测在计算机视觉方面非常重要。<a id="more"></a>到目前为止，大多数研究人员都选择使用软件实现基本的边缘检测算法和一些变形算法。但是，这些方法已经被确定不是有效的实时应用系统的实现。边缘检测算法在硬件平台上的实现对于实时性更加高效。随着超大规模集成技术的发展，硬件实现为软件中并行处理子程序的实现提供了一种方法。因此，硬件实现相对于软件来说，提供了更快的可替代方法。1994年Boo等人提出了使用VLSI技术在ASIC中使用Sobel算子来进行边沿检测的硬件实现。在过去的几年中，使用FPGA实现边沿检测算法的研究反过促进了实时图像处理的研究。在2009年时设计了实时算法，在FPGA板子上进行边缘检测，使用VLSI技术，在一颗硅片上集成10K-100K的晶体管，任何算法的并行化都有可能实现。所有的嵌入式系统都在ASIC或FPGA上设计与实现。</p>
 <p>FPGA是一种具有可配置逻辑块(CLBs)的IC。根据需要的操作，CLB使用硅片上的路由通道进行互联。内部连接可以使用硬件描述语言(HDL)进行配置，比如VHDL或Verilog。如图一所示，硅片由输入/输出端口组成，在边界上提供输入和输出。Abbasi等人在2007年提出了一种在FPGA上实现Sobel边缘检测的架构。在2012年，这个架构被Halder等人证明在空间和时间复杂度方面效率很低。他们提出了一种时间和时间空间复杂度小于Abbasi等人的体系结构。然而，这个架构在像素的冗余存储方面也有缺点，这种架构的精简的实现方法。本文的目的就是克服这些缺点。</p>
 <p><img src="http://pb8y9dvcx.bkt.clouddn.com/18-10-18/81411488.jpg" alt=""></p>
 <p>目前工作领域的贡献如下:</p>
@@ -1207,6 +1206,8 @@
   
 
   
+  
+
 
   
 
