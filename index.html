@@ -323,209 +323,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/18/Hexo搭建博客/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张嘉良">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhangjialiang_yue">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/18/Hexo搭建博客/" itemprop="url">Hexo搭建博客</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-18T22:54:09+08:00">
-                2018-10-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/博客/" itemprop="url" rel="index">
-                    <span itemprop="name">博客</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Hexo搭建博客"><a href="#Hexo搭建博客" class="headerlink" title="Hexo搭建博客"></a>Hexo搭建博客</h1><h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><ol>
-<li><p><code>Git</code>。</p>
-<ul>
-<li><a href="https://gitforwindows.org/" target="_blank" rel="noopener">Git官网地址</a>、<a href="https://github.com/waylau/git-for-win" target="_blank" rel="noopener">Git for Windows 国内下载站</a></li>
-<li>检查是否安装成功。<code>git version</code></li>
-<li>配置Git。在GitBash中配置GitHub账户信息<ul>
-<li>配置账号——<code>git config --global user.name &quot;my_account_name&quot;</code></li>
-<li>配置邮箱——<code>git config --global user.email my_qq_email</code></li>
-<li>创建SSH。在gitbash中输入：<code>ssh-keygen -t rsa -C &quot;youremail@example.com</code>，生成SSH。然后在<code>.ssh</code>文件夹下找到<code>id_rsa.pub</code>文件，把里面的内容复制到GitHub→“创建SSH Keys”。</li>
-<li>在gitbash中验证是否添加成功：<code>ssh -T git@github.com</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><code>Node.js</code></p>
-<ul>
-<li><p><a href="https://nodejs.org/en/" target="_blank" rel="noopener">官网地址</a></p>
-</li>
-<li><p>查看版本。<code>node -v</code></p>
-</li>
-<li><p>配置<code>NPM</code>为国内下载镜像——<a href="https://npm.taobao.org/" target="_blank" rel="noopener">淘宝 NPM 镜像</a>，命令行替代：使用<code>cnpm</code>替代<code>npm</code>。</p>
-<p><code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></p>
-</li>
-</ul>
-</li>
-<li><p><code>Hexo</code></p>
-<ul>
-<li><p>先创建一个文件夹（用来存放所有blog的东西），然后在GitBash中<code>cd</code>到该文件夹下。</p>
-</li>
-<li><p>安装Hexo命令：<code>cnpm i -g hexo</code></p>
-</li>
-<li><p>安装完成后，查看版本：<code>hexo -v</code></p>
-</li>
-<li><p>初始化命令：<code>hexo init</code></p>
-</li>
-</ul>
-<p>-</p>
-</li>
-</ol>
-<h2 id="搭桥到GitHub"><a href="#搭桥到GitHub" class="headerlink" title="搭桥到GitHub"></a>搭桥到GitHub</h2><p>在GitHub账户里创建一个repo，名称为<code>yourname.github.io</code>, 其中yourname是你的github名称。</p>
-<p>打开<code>my_repo—_config.yml</code>文件，修改配置：</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repo:</span> <span class="attr">https://github.com/Your_github_Name/Your_github_Name.github.io.git</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
-<p>回到gitbash中，进入你的blog目录，分别执行以下命令：</p>
-<p><code>hexo clean
-hexo generate
-hexo server</code></p>
-<p>在GitHub中安装：<code>npm i hexo-server</code></p>
-<p>打开浏览器输入：<code>http://localhost:4000</code>就可以看到自己搭建的博客了。</p>
-<h3 id="Hexo常用命令"><a href="#Hexo常用命令" class="headerlink" title="Hexo常用命令"></a>Hexo常用命令</h3><h2 id="init"><a href="#init" class="headerlink" title="init"></a>init</h2><p><code>hexo init [folder]</code></p>
-<h2 id="new"><a href="#new" class="headerlink" title="new"></a>new</h2><p><code>hexo new [layout] &lt;title&gt;</code></p>
-<p>新建一篇文章。如果没有设置 layout 的话，默认使用 <code>_config.yml</code>中的 default_layout 参数代替。如果标题包含空格的话，请使用引号括起来。</p>
-<h2 id="generate生成静态文件"><a href="#generate生成静态文件" class="headerlink" title="generate生成静态文件"></a>generate生成静态文件</h2><p><code>hexo generate</code></p>
-<p>简写为</p>
-<p><code>hexo g</code></p>
-<h2 id="server——启动服务器"><a href="#server——启动服务器" class="headerlink" title="server——启动服务器"></a>server——启动服务器</h2><p><code>hexo server</code></p>
-<p>简写为</p>
-<p><code>hexo s</code></p>
-<h2 id="deploy"><a href="#deploy" class="headerlink" title="deploy"></a>deploy</h2><p><code>hexo deploy</code></p>
-<p>部署网站。</p>
-<p>简写为</p>
-<p><code>hexo d</code></p>
-<p><code>hexo d -g #部署前生成静态文件</code></p>
-<h2 id="clean——清除缓存文件"><a href="#clean——清除缓存文件" class="headerlink" title="clean——清除缓存文件"></a>clean——清除缓存文件</h2>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/18/Markdown-For-Typora/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -700,7 +497,7 @@ hexo server</code></p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">Google</span>][<span class="symbol"></span>]</span><br><span class="line">And then define the link:</span><br><span class="line"></span><br><span class="line">[<span class="symbol">Google</span>]: <span class="link">http://google.com/</span></span><br></pre></td></tr></table></figure>
 <p>In typora click link will expand it for editing, command+click will open the hyperlink in web browser.</p>
 <h3 id="URLs"><a href="#URLs" class="headerlink" title="URLs"></a>URLs</h3><p>Typora allows you to insert urls as links, wrapped by <code>&lt;</code>brackets<code>&gt;</code>.</p>
-<p><code>&lt;i@typora.io&gt;</code> becomes <a href="mailto:&#105;&#64;&#116;&#x79;&#x70;&#x6f;&#114;&#97;&#46;&#x69;&#x6f;" target="_blank" rel="noopener">&#105;&#64;&#116;&#x79;&#x70;&#x6f;&#114;&#97;&#46;&#x69;&#x6f;</a>.</p>
+<p><code>&lt;i@typora.io&gt;</code> becomes <a href="mailto:&#105;&#x40;&#x74;&#x79;&#x70;&#111;&#x72;&#x61;&#46;&#x69;&#x6f;" target="_blank" rel="noopener">&#105;&#x40;&#x74;&#x79;&#x70;&#111;&#x72;&#x61;&#46;&#x69;&#x6f;</a>.</p>
 <p>Typora will aslo auto link standard URLs. e.g: <a href="http://www.google.com" target="_blank" rel="noopener">www.google.com</a>.</p>
 <h3 id="Images"><a href="#Images" class="headerlink" title="Images"></a>Images</h3><p>Image looks similar with links, but it requires an additional <code>!</code> char before the start of link. Image syntax looks like this:</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">Alt text</span>](<span class="link">/path/to/img.jpg</span>)</span><br><span class="line"></span><br><span class="line">![<span class="string">Alt text</span>](<span class="link">/path/to/img.jpg "Optional title"</span>)</span><br></pre></td></tr></table></figure>
@@ -748,6 +545,209 @@ hexo server</code></p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;video src="xxx.mp4" /&gt;</span><br></pre></td></tr></table></figure>
 <h3 id="Other-HTML-Support"><a href="#Other-HTML-Support" class="headerlink" title="Other HTML Support"></a>Other HTML Support</h3><p>You could find details <a href="http://support.typora.io/HTML/" target="_blank" rel="noopener">here</a>.</p>
 
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/18/Hexo搭建博客/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张嘉良">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhangjialiang_yue">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/18/Hexo搭建博客/" itemprop="url">Hexo搭建博客</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-18T22:54:09+08:00">
+                2018-10-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/博客/" itemprop="url" rel="index">
+                    <span itemprop="name">博客</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Hexo搭建博客"><a href="#Hexo搭建博客" class="headerlink" title="Hexo搭建博客"></a>Hexo搭建博客</h1><h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><ol>
+<li><p><code>Git</code>。</p>
+<ul>
+<li><a href="https://gitforwindows.org/" target="_blank" rel="noopener">Git官网地址</a>、<a href="https://github.com/waylau/git-for-win" target="_blank" rel="noopener">Git for Windows 国内下载站</a></li>
+<li>检查是否安装成功。<code>git version</code></li>
+<li>配置Git。在GitBash中配置GitHub账户信息<ul>
+<li>配置账号——<code>git config --global user.name &quot;my_account_name&quot;</code></li>
+<li>配置邮箱——<code>git config --global user.email my_qq_email</code></li>
+<li>创建SSH。在gitbash中输入：<code>ssh-keygen -t rsa -C &quot;youremail@example.com</code>，生成SSH。然后在<code>.ssh</code>文件夹下找到<code>id_rsa.pub</code>文件，把里面的内容复制到GitHub→“创建SSH Keys”。</li>
+<li>在gitbash中验证是否添加成功：<code>ssh -T git@github.com</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>Node.js</code></p>
+<ul>
+<li><p><a href="https://nodejs.org/en/" target="_blank" rel="noopener">官网地址</a></p>
+</li>
+<li><p>查看版本。<code>node -v</code></p>
+</li>
+<li><p>配置<code>NPM</code>为国内下载镜像——<a href="https://npm.taobao.org/" target="_blank" rel="noopener">淘宝 NPM 镜像</a>，命令行替代：使用<code>cnpm</code>替代<code>npm</code>。</p>
+<p><code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></p>
+</li>
+</ul>
+</li>
+<li><p><code>Hexo</code></p>
+<ul>
+<li><p>先创建一个文件夹（用来存放所有blog的东西），然后在GitBash中<code>cd</code>到该文件夹下。</p>
+</li>
+<li><p>安装Hexo命令：<code>cnpm i -g hexo</code></p>
+</li>
+<li><p>安装完成后，查看版本：<code>hexo -v</code></p>
+</li>
+<li><p>初始化命令：<code>hexo init</code></p>
+</li>
+</ul>
+<p>-</p>
+</li>
+</ol>
+<h2 id="搭桥到GitHub"><a href="#搭桥到GitHub" class="headerlink" title="搭桥到GitHub"></a>搭桥到GitHub</h2><p>在GitHub账户里创建一个repo，名称为<code>yourname.github.io</code>, 其中yourname是你的github名称。</p>
+<p>打开<code>my_repo—_config.yml</code>文件，修改配置：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repo:</span> <span class="attr">https://github.com/Your_github_Name/Your_github_Name.github.io.git</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+<p>回到gitbash中，进入你的blog目录，分别执行以下命令：</p>
+<p><code>hexo clean
+hexo generate
+hexo server</code></p>
+<p>在GitHub中安装：<code>npm i hexo-server</code></p>
+<p>打开浏览器输入：<code>http://localhost:4000</code>就可以看到自己搭建的博客了。</p>
+<h3 id="Hexo常用命令"><a href="#Hexo常用命令" class="headerlink" title="Hexo常用命令"></a>Hexo常用命令</h3><h2 id="init"><a href="#init" class="headerlink" title="init"></a>init</h2><p><code>hexo init [folder]</code></p>
+<h2 id="new"><a href="#new" class="headerlink" title="new"></a>new</h2><p><code>hexo new [layout] &lt;title&gt;</code></p>
+<p>新建一篇文章。如果没有设置 layout 的话，默认使用 <code>_config.yml</code>中的 default_layout 参数代替。如果标题包含空格的话，请使用引号括起来。</p>
+<h2 id="generate生成静态文件"><a href="#generate生成静态文件" class="headerlink" title="generate生成静态文件"></a>generate生成静态文件</h2><p><code>hexo generate</code></p>
+<p>简写为</p>
+<p><code>hexo g</code></p>
+<h2 id="server——启动服务器"><a href="#server——启动服务器" class="headerlink" title="server——启动服务器"></a>server——启动服务器</h2><p><code>hexo server</code></p>
+<p>简写为</p>
+<p><code>hexo s</code></p>
+<h2 id="deploy"><a href="#deploy" class="headerlink" title="deploy"></a>deploy</h2><p><code>hexo deploy</code></p>
+<p>部署网站。</p>
+<p>简写为</p>
+<p><code>hexo d</code></p>
+<p><code>hexo d -g #部署前生成静态文件</code></p>
+<h2 id="clean——清除缓存文件"><a href="#clean——清除缓存文件" class="headerlink" title="clean——清除缓存文件"></a>clean——清除缓存文件</h2>
           
         
       
