@@ -131,7 +131,7 @@
 <meta property="og:site_name" content="zhangjialiang_yue">
 <meta property="og:description" content="Hexo搭建博客环境准备 Git。  Git官网地址、Git for Windows 国内下载站 检查是否安装成功。git version 配置Git。在GitBash中配置GitHub账户信息 配置账号——git config --global user.name &amp;quot;my_account_name&amp;quot; 配置邮箱——git config --global user.email m">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-18T16:43:01.519Z">
+<meta property="og:updated_time" content="2018-10-18T18:59:20.320Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo搭建博客">
 <meta name="twitter:description" content="Hexo搭建博客环境准备 Git。  Git官网地址、Git for Windows 国内下载站 检查是否安装成功。git version 配置Git。在GitBash中配置GitHub账户信息 配置账号——git config --global user.name &amp;quot;my_account_name&amp;quot; 配置邮箱——git config --global user.email m">
@@ -443,18 +443,14 @@
 </li>
 <li><p><code>Hexo</code></p>
 <ul>
-<li><p>先创建一个文件夹（用来存放所有blog的东西），然后在GitBash中<code>cd</code>到该文件夹下。</p>
-</li>
-<li><p>安装Hexo命令：<code>cnpm i -g hexo</code></p>
-</li>
-<li><p>安装完成后，查看版本：<code>hexo -v</code></p>
-</li>
-<li><p>初始化命令：<code>hexo init</code></p>
-</li>
+<li>先创建一个文件夹（用来存放所有blog的东西），然后在GitBash中<code>cd</code>到该文件夹下。</li>
+<li>安装Hexo命令：<code>cnpm i -g hexo</code></li>
+<li>安装完成后，查看版本：<code>hexo -v</code></li>
+<li>初始化命令：<code>hexo init</code></li>
 </ul>
-<p>-</p>
 </li>
 </ol>
+<a id="more"></a>
 <h2 id="搭桥到GitHub"><a href="#搭桥到GitHub" class="headerlink" title="搭桥到GitHub"></a>搭桥到GitHub</h2><p>在GitHub账户里创建一个repo，名称为<code>yourname.github.io</code>, 其中yourname是你的github名称。</p>
 <p>打开<code>my_repo—_config.yml</code>文件，修改配置：</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repo:</span> <span class="attr">https://github.com/Your_github_Name/Your_github_Name.github.io.git</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
@@ -508,8 +504,8 @@ hexo server</code></p>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/18/Markdown-For-Typora/" rel="next" title="Markdown For Typora">
-                <i class="fa fa-chevron-left"></i> Markdown For Typora
+              <a href="/2018/10/18/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
               </a>
             
           </div>
@@ -518,8 +514,8 @@ hexo server</code></p>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/19/基于FPGA的Sobel边沿检测实现/" rel="prev" title="基于FPGA的Sobel边沿检测实现">
-                基于FPGA的Sobel边沿检测实现 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/18/Markdown-For-Typora/" rel="prev" title="Markdown For Typora">
+                Markdown For Typora <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
