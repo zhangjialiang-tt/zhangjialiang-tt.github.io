@@ -123,22 +123,24 @@
 
 
 
-<meta name="description" content="图像预处理基础知识图像预处理的基本步骤">
+<meta name="description" content="图像预处理的基本步骤">
 <meta property="og:type" content="article">
-<meta property="og:title" content="图像预处理基础知识">
+<meta property="og:title" content="基于图像预处理基础知识">
 <meta property="og:url" content="http://yoursite.com/2018/10/19/图像预处理基础知识/index.html">
 <meta property="og:site_name" content="技术人生">
-<meta property="og:description" content="图像预处理基础知识图像预处理的基本步骤">
+<meta property="og:description" content="图像预处理的基本步骤">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://pb8y9dvcx.bkt.clouddn.com/18-10-19/46796367.jpg">
 <meta property="og:image" content="http://pb8y9dvcx.bkt.clouddn.com/18-10-19/29749463.jpg">
 <meta property="og:image" content="http://pb8y9dvcx.bkt.clouddn.com/18-10-19/88191328.jpg">
 <meta property="og:image" content="http://pb8y9dvcx.bkt.clouddn.com/18-10-19/50987736.jpg">
 <meta property="og:image" content="http://pb8y9dvcx.bkt.clouddn.com/18-10-19/16705603.jpg">
-<meta property="og:updated_time" content="2018-10-19T09:49:27.516Z">
+<meta property="og:image" content="http://pb8y9dvcx.bkt.clouddn.com/18-10-19/91981414.jpg">
+<meta property="og:updated_time" content="2018-10-19T10:11:00.171Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="图像预处理基础知识">
-<meta name="twitter:description" content="图像预处理基础知识图像预处理的基本步骤">
-<meta name="twitter:image" content="http://pb8y9dvcx.bkt.clouddn.com/18-10-19/29749463.jpg">
+<meta name="twitter:title" content="基于图像预处理基础知识">
+<meta name="twitter:description" content="图像预处理的基本步骤">
+<meta name="twitter:image" content="http://pb8y9dvcx.bkt.clouddn.com/18-10-19/46796367.jpg">
 
 
 
@@ -174,7 +176,7 @@
 
 
 
-  <title>图像预处理基础知识 | 技术人生</title>
+  <title>基于图像预处理基础知识 | 技术人生</title>
   
 
 
@@ -362,7 +364,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">图像预处理基础知识</h1>
+          <h1 class="post-title" itemprop="name headline">基于图像预处理基础知识</h1>
         
 
         <div class="post-meta">
@@ -445,7 +447,7 @@
       
 
       
-        <h1 id="图像预处理基础知识"><a href="#图像预处理基础知识" class="headerlink" title="图像预处理基础知识"></a>图像预处理基础知识</h1><h2 id="图像预处理的基本步骤"><a href="#图像预处理的基本步骤" class="headerlink" title="图像预处理的基本步骤"></a>图像预处理的基本步骤</h2><a id="more"></a>
+        <h2 id="图像预处理的基本步骤"><a href="#图像预处理的基本步骤" class="headerlink" title="图像预处理的基本步骤"></a>图像预处理的基本步骤</h2><a id="more"></a>
 <ol>
 <li><p>导入图像</p>
 </li>
@@ -462,17 +464,20 @@
 <li><p>直方图匹配/轮廓匹配</p>
 </li>
 </ol>
+<h2 id="窗处理"><a href="#窗处理" class="headerlink" title="窗处理"></a>窗处理</h2><p><a href="http://www.openhw.org/module/forum/thread-597996-1-1.html" target="_blank" rel="noopener">FPGA图像处理系列——实现窗处理</a></p>
 <h2 id="中值滤波"><a href="#中值滤波" class="headerlink" title="中值滤波"></a>中值滤波</h2><p><em>中值滤波</em>基于排序统计理论，是抑制噪声的非线性信号处理技术。 </p>
-<p><strong>原理</strong>：核心运算是对模板中的数据进行排序, 使得某个亮点 (暗点)的噪声在排序过程中被排在数据序列的两侧。 因为数据序列中间位置上的值一般不是噪声点的值, 从而达到抑制噪声的目的。</p>
+<p>先看效果：</p>
+<p><img src="http://pb8y9dvcx.bkt.clouddn.com/18-10-19/46796367.jpg" alt=""></p>
+<p><strong>原理</strong>：核心运算是对窗口模板中的数据进行排序, 使得某个亮点 (暗点)的噪声在排序过程中被排在数据序列的两侧，从而用该像素邻域中的中间值替代这个亮/暗点（噪声），即剔除了噪声。</p>
 <h3 id="标准中值滤波"><a href="#标准中值滤波" class="headerlink" title="标准中值滤波"></a>标准中值滤波</h3><p><strong>基本思路</strong>：标准中值滤波对邻域中的像素按<em>灰度级</em>进行排序, 然后选择该组的中间值作为输出像素值。</p>
-<p><strong>缺点</strong>：标准中值滤波对平均分布的噪声抑制效果差, 对脉冲声有较好的抑制效果。 </p>
+<p><strong>缺点</strong>：标准中值滤波对平均分布的噪声抑制效果差, 对脉冲声有较好的抑制效果。 <strong>也就是：中值滤波是针对一幅图像的所有像素，（灰度值较大/较小的）噪声很容易被排序排到两端，但是正常像素点也被中值滤波器进行了排序，本来是排在第二位的像素有可能被第6个位子的像素替代，这种对正常像素的平滑是中值滤波器的副作用。</strong></p>
 <p>由中值滤波算法的定义可推知, 在 n× n 的滤波窗口内, 若噪声像素点的数量大于 n (n+1)/ 2, 则该噪声不会被滤除, 为了提高中值滤波的去噪效果, 必须增大滤波器窗口。 另一方面, 若窗口中的图像边缘细节的像素数小于 n(n+1)/2 , 则该细节像素将会被其他像素的灰度值取代, 造成了图像细节的模糊 。为了保护图像细节边缘, 又要求缩小滤波窗口, 这是标准中值滤波算法的一个矛盾。</p>
 <h3 id="滤波器整体结构的-FPGA-设计"><a href="#滤波器整体结构的-FPGA-设计" class="headerlink" title="滤波器整体结构的 FPGA 设计"></a>滤波器整体结构的 FPGA 设计</h3><h4 id="图像滤波器的结构"><a href="#图像滤波器的结构" class="headerlink" title="图像滤波器的结构"></a>图像滤波器的结构</h4><ul>
 <li>滤波窗口生成模块、；</li>
 <li>行列计数器模块；</li>
 <li>滤波算法模块；</li>
 </ul>
-<h4 id="滤波窗口生成模块"><a href="#滤波窗口生成模块" class="headerlink" title="滤波窗口生成模块"></a>滤波窗口生成模块</h4><p>图像预处理算法往往针对邻域像素操作。 以 3 ×3 的窗口为例,，利用 2 个 FIFO 和 6 个寄存器对图像的行、 列数据进行存储, 设计滤波窗口如图 1 所示。</p>
+<h4 id="滤波窗口生成模块——窗处理"><a href="#滤波窗口生成模块——窗处理" class="headerlink" title="滤波窗口生成模块——窗处理"></a>滤波窗口生成模块——窗处理</h4><p>图像预处理算法往往针对邻域像素操作。 以 3 ×3 的窗口为例,，利用 2 个 FIFO 和 6 个寄存器对图像的行、 列数据进行存储, 设计滤波窗口如图 1 所示。</p>
 <p><img src="http://pb8y9dvcx.bkt.clouddn.com/18-10-19/29749463.jpg" alt=""></p>
 <p>每个 FIFO 的地址长度为图像的宽度，即 1 个FIFO 存储 1 行图像数据, 用于图像行数据缓存;</p>
 <p>6 个寄存器分 3 组两两串接, 实现每行数据上列像素的缓存, 从而形成一个 3×3 的滤波窗口 , 在一个像素时钟周期内并行输出 9 个数据作为后续算法模块的输入。</p>
@@ -494,6 +499,8 @@
 </ul>
 <p>如此, 经过 6 级比较后即可得到 9 个数据的<strong>标准中值滤波输出值 out5</strong>（out5是中间值中的中间值，所以这叫做中值滤波算法） , 而 out1 , out2 , … , out9 分别是这 9 个数据从最大到最小的顺序排列值。 </p>
 <p>此外, 为了保证流水线操作过程中数据的同步性, 在第三级和第五级比较电路中需要插入数据寄存器 R 缓存当前该级中不参与比较的数据。</p>
+<p>放一张图示意下排序算法是过程：</p>
+<p><img src="http://pb8y9dvcx.bkt.clouddn.com/18-10-19/91981414.jpg" alt=""></p>
 
       
     </div>
@@ -662,7 +669,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#图像预处理基础知识"><span class="nav-number">1.</span> <span class="nav-text">图像预处理基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#图像预处理的基本步骤"><span class="nav-number">1.1.</span> <span class="nav-text">图像预处理的基本步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中值滤波"><span class="nav-number">1.2.</span> <span class="nav-text">中值滤波</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标准中值滤波"><span class="nav-number">1.2.1.</span> <span class="nav-text">标准中值滤波</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#滤波器整体结构的-FPGA-设计"><span class="nav-number">1.2.2.</span> <span class="nav-text">滤波器整体结构的 FPGA 设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#图像滤波器的结构"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">图像滤波器的结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#滤波窗口生成模块"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">滤波窗口生成模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图像行列计数器设计"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">图像行列计数器设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#滤波算法设计"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">滤波算法设计</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#图像预处理的基本步骤"><span class="nav-number">1.</span> <span class="nav-text">图像预处理的基本步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#窗处理"><span class="nav-number">2.</span> <span class="nav-text">窗处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中值滤波"><span class="nav-number">3.</span> <span class="nav-text">中值滤波</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标准中值滤波"><span class="nav-number">3.1.</span> <span class="nav-text">标准中值滤波</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#滤波器整体结构的-FPGA-设计"><span class="nav-number">3.2.</span> <span class="nav-text">滤波器整体结构的 FPGA 设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#图像滤波器的结构"><span class="nav-number">3.2.1.</span> <span class="nav-text">图像滤波器的结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#滤波窗口生成模块——窗处理"><span class="nav-number">3.2.2.</span> <span class="nav-text">滤波窗口生成模块——窗处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图像行列计数器设计"><span class="nav-number">3.2.3.</span> <span class="nav-text">图像行列计数器设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#滤波算法设计"><span class="nav-number">3.2.4.</span> <span class="nav-text">滤波算法设计</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
