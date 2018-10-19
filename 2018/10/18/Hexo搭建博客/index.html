@@ -131,7 +131,7 @@
 <meta property="og:site_name" content="技术人生">
 <meta property="og:description" content="Hexo搭建博客环境准备 Git。  Git官网地址、Git for Windows 国内下载站 检查是否安装成功。git version 配置Git。在GitBash中配置GitHub账户信息 配置账号——git config --global user.name &amp;quot;my_account_name&amp;quot; 配置邮箱——git config --global user.email m">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-18T18:59:20.320Z">
+<meta property="og:updated_time" content="2018-10-19T04:49:07.328Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo搭建博客">
 <meta name="twitter:description" content="Hexo搭建博客环境准备 Git。  Git官网地址、Git for Windows 国内下载站 检查是否安装成功。git version 配置Git。在GitBash中配置GitHub账户信息 配置账号——git config --global user.name &amp;quot;my_account_name&amp;quot; 配置邮箱——git config --global user.email m">
@@ -261,26 +261,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-schedule">
-          <a href="/schedule/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
-            
-            日程表
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
           </a>
         </li>
       
@@ -494,21 +474,32 @@ hexo generate
 hexo server</code></p>
 <p>在GitHub中安装：<code>npm i hexo-server</code></p>
 <p>打开浏览器输入：<code>http://localhost:4000</code>就可以看到自己搭建的博客了。</p>
-<h3 id="Hexo常用命令"><a href="#Hexo常用命令" class="headerlink" title="Hexo常用命令"></a>Hexo常用命令</h3><h2 id="init"><a href="#init" class="headerlink" title="init"></a>init</h2><p><code>hexo init [folder]</code></p>
-<h2 id="new"><a href="#new" class="headerlink" title="new"></a>new</h2><p><code>hexo new [layout] &lt;title&gt;</code></p>
+<h3 id="Hexo常用命令"><a href="#Hexo常用命令" class="headerlink" title="Hexo常用命令"></a>Hexo常用命令</h3><h4 id="init"><a href="#init" class="headerlink" title="init"></a>init</h4><p><code>hexo init [folder]</code></p>
+<p>new</p>
+<p><code>hexo new [layout] &lt;title&gt;</code></p>
 <p>新建一篇文章。如果没有设置 layout 的话，默认使用 <code>_config.yml</code>中的 default_layout 参数代替。如果标题包含空格的话，请使用引号括起来。</p>
-<h2 id="generate生成静态文件"><a href="#generate生成静态文件" class="headerlink" title="generate生成静态文件"></a>generate生成静态文件</h2><p><code>hexo generate</code></p>
+<h4 id="generate生成静态文件"><a href="#generate生成静态文件" class="headerlink" title="generate生成静态文件"></a>generate生成静态文件</h4><p><code>hexo generate</code></p>
 <p>简写为</p>
 <p><code>hexo g</code></p>
-<h2 id="server——启动服务器"><a href="#server——启动服务器" class="headerlink" title="server——启动服务器"></a>server——启动服务器</h2><p><code>hexo server</code></p>
+<h4 id="server——启动服务器"><a href="#server——启动服务器" class="headerlink" title="server——启动服务器"></a>server——启动服务器</h4><p><code>hexo server</code></p>
 <p>简写为</p>
 <p><code>hexo s</code></p>
-<h2 id="deploy"><a href="#deploy" class="headerlink" title="deploy"></a>deploy</h2><p><code>hexo deploy</code></p>
+<h4 id="deploy"><a href="#deploy" class="headerlink" title="deploy"></a>deploy</h4><p><code>hexo deploy</code></p>
 <p>部署网站。</p>
 <p>简写为</p>
 <p><code>hexo d</code></p>
 <p><code>hexo d -g #部署前生成静态文件</code></p>
-<h2 id="clean——清除缓存文件"><a href="#clean——清除缓存文件" class="headerlink" title="clean——清除缓存文件"></a>clean——清除缓存文件</h2>
+<h4 id="clean——清除缓存文件"><a href="#clean——清除缓存文件" class="headerlink" title="clean——清除缓存文件"></a>clean——清除缓存文件</h4><h2 id="Hexo备忘总结"><a href="#Hexo备忘总结" class="headerlink" title="Hexo备忘总结"></a>Hexo备忘总结</h2><ol>
+<li><p>在首页不全部显示，有个“阅读全文按钮”。在想要显示的源码问价那种输入<code>&lt;!--more--&gt;</code>，即可按照Markdown渲染后的样式显示在主页。</p>
+</li>
+<li><p>给笔记添加标签/分类。在笔记开头插入“Head Fornt”。</p>
+<p>YAML</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">Hello</span> <span class="string">World</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2013</span><span class="string">/7/13</span> <span class="number">20</span><span class="string">:46:25</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">cat1</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">cat2</span></span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">tag1</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">tag2</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">tag3</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+<p>也可以使用数组样式的Tags</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">categories:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">[Sports,</span> <span class="string">Baseball]</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">[MLB,</span> <span class="string">American</span> <span class="string">League,</span> <span class="string">Boston</span> <span class="string">Red</span> <span class="string">Sox]</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">[MLB,</span> <span class="string">American</span> <span class="string">League,</span> <span class="string">New</span> <span class="string">York</span> <span class="string">Yankees]</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">Rivalries</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
       
     </div>
     
@@ -538,8 +529,8 @@ hexo server</code></p>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/18/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2018/10/18/Markdown-For-Typora/" rel="next" title="Markdown For Typora">
+                <i class="fa fa-chevron-left"></i> Markdown For Typora
               </a>
             
           </div>
@@ -548,8 +539,8 @@ hexo server</code></p>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/18/Markdown-For-Typora/" rel="prev" title="Markdown For Typora">
-                Markdown For Typora <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/19/基于FPGA的Sobel边沿检测实现/" rel="prev" title="基于FPGA的Sobel边沿检测实现">
+                基于FPGA的Sobel边沿检测实现 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -686,7 +677,7 @@ hexo server</code></p>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo搭建博客"><span class="nav-number">1.</span> <span class="nav-text">Hexo搭建博客</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境准备"><span class="nav-number">1.1.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭桥到GitHub"><span class="nav-number">1.2.</span> <span class="nav-text">搭桥到GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo常用命令"><span class="nav-number">1.2.1.</span> <span class="nav-text">Hexo常用命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#init"><span class="nav-number">1.3.</span> <span class="nav-text">init</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#new"><span class="nav-number">1.4.</span> <span class="nav-text">new</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#generate生成静态文件"><span class="nav-number">1.5.</span> <span class="nav-text">generate生成静态文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#server——启动服务器"><span class="nav-number">1.6.</span> <span class="nav-text">server——启动服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#deploy"><span class="nav-number">1.7.</span> <span class="nav-text">deploy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#clean——清除缓存文件"><span class="nav-number">1.8.</span> <span class="nav-text">clean——清除缓存文件</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo搭建博客"><span class="nav-number">1.</span> <span class="nav-text">Hexo搭建博客</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境准备"><span class="nav-number">1.1.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭桥到GitHub"><span class="nav-number">1.2.</span> <span class="nav-text">搭桥到GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo常用命令"><span class="nav-number">1.2.1.</span> <span class="nav-text">Hexo常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#init"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">init</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#generate生成静态文件"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">generate生成静态文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#server——启动服务器"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">server——启动服务器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#deploy"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">deploy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#clean——清除缓存文件"><span class="nav-number">1.2.1.5.</span> <span class="nav-text">clean——清除缓存文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo备忘总结"><span class="nav-number">1.3.</span> <span class="nav-text">Hexo备忘总结</span></a></li></ol></li></ol></div>
             
 
           </div>
