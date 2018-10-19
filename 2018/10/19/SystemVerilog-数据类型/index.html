@@ -123,21 +123,21 @@
 
 
 
-<meta name="description" content="SystemVerilog–数据类型Verilog中的变量是四状态的——0, 1, X, Z，System Verilog引入双状态数据，这有助于提高仿真速度。  注意:进行逻辑设计时最好还是使用四状态数据，这样能实现高阻态和未知态。     123bit [15:0] bus_A; // Default unsignedbit signed [15:0] bus_A; // declared a">
+<meta name="description" content="SystemVerilog–数据类型[TOC] 基本数据类型Verilog中的变量是四状态的——0, 1, X, Z，System Verilog引入双状态数据，这有助于提高仿真速度。">
 <meta name="keywords" content="SystemVerilog">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SystemVerilog--数据类型">
 <meta property="og:url" content="http://yoursite.com/2018/10/19/SystemVerilog-数据类型/index.html">
 <meta property="og:site_name" content="技术人生">
-<meta property="og:description" content="SystemVerilog–数据类型Verilog中的变量是四状态的——0, 1, X, Z，System Verilog引入双状态数据，这有助于提高仿真速度。  注意:进行逻辑设计时最好还是使用四状态数据，这样能实现高阻态和未知态。     123bit [15:0] bus_A; // Default unsignedbit signed [15:0] bus_A; // declared a">
+<meta property="og:description" content="SystemVerilog–数据类型[TOC] 基本数据类型Verilog中的变量是四状态的——0, 1, X, Z，System Verilog引入双状态数据，这有助于提高仿真速度。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://pb8y9dvcx.bkt.clouddn.com/18-10-19/40145507.jpg">
 <meta property="og:image" content="http://pb8y9dvcx.bkt.clouddn.com/18-10-19/86712639.jpg">
 <meta property="og:image" content="http://pb8y9dvcx.bkt.clouddn.com/18-10-19/65783597.jpg">
-<meta property="og:updated_time" content="2018-10-19T06:55:32.113Z">
+<meta property="og:updated_time" content="2018-10-19T08:03:33.249Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SystemVerilog--数据类型">
-<meta name="twitter:description" content="SystemVerilog–数据类型Verilog中的变量是四状态的——0, 1, X, Z，System Verilog引入双状态数据，这有助于提高仿真速度。  注意:进行逻辑设计时最好还是使用四状态数据，这样能实现高阻态和未知态。     123bit [15:0] bus_A; // Default unsignedbit signed [15:0] bus_A; // declared a">
+<meta name="twitter:description" content="SystemVerilog–数据类型[TOC] 基本数据类型Verilog中的变量是四状态的——0, 1, X, Z，System Verilog引入双状态数据，这有助于提高仿真速度。">
 <meta name="twitter:image" content="http://pb8y9dvcx.bkt.clouddn.com/18-10-19/40145507.jpg">
 
 
@@ -445,7 +445,8 @@
       
 
       
-        <h1 id="SystemVerilog–数据类型"><a href="#SystemVerilog–数据类型" class="headerlink" title="SystemVerilog–数据类型"></a>SystemVerilog–数据类型</h1><p>Verilog中的变量是四状态的——<code>0, 1, X, Z</code>，System Verilog引入双状态数据，这有助于提高仿真速度。</p>
+        <h1 id="SystemVerilog–数据类型"><a href="#SystemVerilog–数据类型" class="headerlink" title="SystemVerilog–数据类型"></a>SystemVerilog–数据类型</h1><p>[TOC]</p>
+<h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><p>Verilog中的变量是四状态的——<code>0, 1, X, Z</code>，System Verilog引入双状态数据，这有助于提高仿真速度。<a id="more"></a></p>
 <blockquote>
 <p>注意:进行逻辑设计时最好还是使用四状态数据，这样能实现高阻态和未知态。</p>
 </blockquote>
@@ -453,7 +454,33 @@
 <p><img src="http://pb8y9dvcx.bkt.clouddn.com/18-10-19/86712639.jpg" alt=""></p>
 <p><img src="http://pb8y9dvcx.bkt.clouddn.com/18-10-19/65783597.jpg" alt=""></p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bit</span> [<span class="number">15</span>:<span class="number">0</span>] bus_A; <span class="comment">// Default unsigned</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">bit</span> <span class="keyword">signed</span> [<span class="number">15</span>:<span class="number">0</span>] bus_A; <span class="comment">// declared as signed</span></span><br></pre></td></tr></table></figure>
-<h2 id="内建数据类型"><a href="#内建数据类型" class="headerlink" title="内建数据类型"></a>内建数据类型</h2><h3 id="逻辑类型"><a href="#逻辑类型" class="headerlink" title="逻辑类型"></a>逻辑类型</h3>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="定宽数组"><a href="#定宽数组" class="headerlink" title="定宽数组"></a>定宽数组</h3><ul>
+<li><p>数组在声明时必须给出上下界，可以使用类似C语言的方式声明。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> arr1[<span class="number">0</span>:<span class="number">15</span>];<span class="comment">//16个整数</span></span><br><span class="line"><span class="keyword">int</span> arr2[<span class="number">16</span>];<span class="comment">//16个整数</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多维数组。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> arr3[<span class="number">0</span>:<span class="number">7</span>][<span class="number">0</span>:<span class="number">3</span>];<span class="comment">//完整的声明</span></span><br><span class="line"><span class="keyword">int</span> arr4[<span class="number">8</span>][<span class="number">4</span>];<span class="comment">//紧凑的声明</span></span><br><span class="line">arr5[<span class="number">7</span>][<span class="number">3</span>] = <span class="number">1</span>;<span class="comment">//设置最后一个元素</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数组赋值。使用单引号+大括号来初始化数组</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> arr6[<span class="number">4</span>] = '&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;<span class="comment">//对四个元素进行初始化</span></span><br><span class="line"><span class="keyword">int</span> arr7[<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line">arr7 = '&#123;<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>&#125;;<span class="comment">//为5个元素赋值</span></span><br><span class="line">arr7[<span class="number">0</span>:<span class="number">2</span>] = '&#123;<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>&#125;;<span class="comment">//为前3个元素赋值</span></span><br><span class="line">arr6 = '&#123;<span class="number">4</span>&#123;<span class="number">8</span>&#125;&#125;;<span class="comment">//4个值全为0</span></span><br><span class="line">arr7 = '&#123;<span class="number">9</span>,<span class="number">8</span>,<span class="keyword">default</span>:<span class="number">1</span>&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>基本的数组操作</p>
+<ul>
+<li><p>for和foreach循环</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">bit</span>[<span class="number">31</span>:<span class="number">0</span>] src[<span class="number">5</span>],dst[<span class="number">5</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="built_in">$size</span>(src); i = i+<span class="number">1</span>) <span class="keyword">begin</span></span><br><span class="line">        src[i] = i;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span>( dst[j] )<span class="comment">//遍历dst数组</span></span><br><span class="line">        dst[j] = src[j]*<span class="number">2</span>;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="动态数组"><a href="#动态数组" class="headerlink" title="动态数组"></a>动态数组</h3><p>动态数组在仿真时调整分配空间或者调整宽度，编译时不给出数组宽度，运行时确定，所以使用<code>new[]</code>操作符分配空间，同时括号中给出数组宽度。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> dyn[],d2[];             <span class="comment">//声明动态数组</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">    dyn = <span class="keyword">new</span>[<span class="number">5</span>];           <span class="comment">//A:分配5各元素</span></span><br><span class="line">    <span class="keyword">foreach</span> ( dyn[j] )      <span class="comment">//B:对元素进行初始化</span></span><br><span class="line">        dyn[j] = j;</span><br><span class="line">    d2 = dyn;               <span class="comment">//C:复制一个动态数组</span></span><br><span class="line">    d2[<span class="number">0</span>] = <span class="number">5</span>;              <span class="comment">//D:修改赋值值</span></span><br><span class="line">    <span class="built_in">$display</span>(dyn[<span class="number">0</span>],d2[<span class="number">0</span>]); <span class="comment">//E:显示数组</span></span><br><span class="line">    dyn = <span class="keyword">new</span>[<span class="number">20</span>](dyn);		<span class="comment">//F:分配20个整数，并复制原来的5个数给新的数组</span></span><br><span class="line">    dyn = <span class="keyword">new</span>[<span class="number">100</span>];			<span class="comment">//G:分配100个整数</span></span><br><span class="line">    dyn<span class="variable">.delete</span>();           <span class="comment">//H:删除所有元素</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><p><strong>队列</strong>是SV引进的新数据类型，结合数组和链表的有点：</p>
+<ul>
+<li>（像链表）在队列的任何地方增加或者删除元素，而动态数组需要先分配空间并复制原来的数；</li>
+<li>（像数组）可以通过索引访问任何一个元素，而不用像链表需要遍历所有元素；</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> j = <span class="number">1</span>;</span><br><span class="line">q2[$] = &#123;<span class="number">3</span>,<span class="number">4</span>&#125;;          <span class="comment">//队列的常量不需要使用"'"</span></span><br><span class="line">q[$] = &#123;<span class="number">0</span>,<span class="number">2</span>,<span class="number">5</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">    q<span class="variable">.insert</span>(<span class="number">1</span>,j);      <span class="comment">//在2前插入1</span></span><br><span class="line">    q<span class="variable">.insert</span>(<span class="number">3</span>,q2);     <span class="comment">//在q中插入一个队列</span></span><br><span class="line">    q<span class="variable">.delete</span>(<span class="number">1</span>);        <span class="comment">//删除第一个元素</span></span><br><span class="line">                        </span><br><span class="line">    q<span class="variable">.push_front</span>(<span class="number">6</span>);    <span class="comment">//在队列前插入</span></span><br><span class="line">    j = q<span class="variable">.pop_back</span>;     <span class="comment">//j=5</span></span><br><span class="line">    q<span class="variable">.push_back</span>(<span class="number">8</span>);     <span class="comment">//在队列末尾插入</span></span><br><span class="line">    j = q<span class="variable">.pop_front</span>;    <span class="comment">//j=6</span></span><br><span class="line">    <span class="keyword">foreach</span>( q[i] )     <span class="comment">//打印整个队列</span></span><br><span class="line">        <span class="built_in">$display</span>(q[i]); </span><br><span class="line">    q<span class="variable">.delete</span>();         <span class="comment">//删除整个队列</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -627,7 +654,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SystemVerilog–数据类型"><span class="nav-number">1.</span> <span class="nav-text">SystemVerilog–数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#内建数据类型"><span class="nav-number">1.1.</span> <span class="nav-text">内建数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑类型"><span class="nav-number">1.1.1.</span> <span class="nav-text">逻辑类型</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SystemVerilog–数据类型"><span class="nav-number">1.</span> <span class="nav-text">SystemVerilog–数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本数据类型"><span class="nav-number">1.1.</span> <span class="nav-text">基本数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">1.2.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定宽数组"><span class="nav-number">1.2.1.</span> <span class="nav-text">定宽数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态数组"><span class="nav-number">1.2.2.</span> <span class="nav-text">动态数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#队列"><span class="nav-number">1.2.3.</span> <span class="nav-text">队列</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
