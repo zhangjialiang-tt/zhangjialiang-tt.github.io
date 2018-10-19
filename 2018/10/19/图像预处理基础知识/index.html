@@ -136,7 +136,7 @@
 <meta property="og:image" content="http://pb8y9dvcx.bkt.clouddn.com/18-10-19/50987736.jpg">
 <meta property="og:image" content="http://pb8y9dvcx.bkt.clouddn.com/18-10-19/16705603.jpg">
 <meta property="og:image" content="http://pb8y9dvcx.bkt.clouddn.com/18-10-19/91981414.jpg">
-<meta property="og:updated_time" content="2018-10-19T10:11:00.171Z">
+<meta property="og:updated_time" content="2018-10-19T10:18:29.238Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于图像预处理基础知识">
 <meta name="twitter:description" content="图像预处理的基本步骤">
@@ -465,6 +465,7 @@
 </li>
 </ol>
 <h2 id="窗处理"><a href="#窗处理" class="headerlink" title="窗处理"></a>窗处理</h2><p><a href="http://www.openhw.org/module/forum/thread-597996-1-1.html" target="_blank" rel="noopener">FPGA图像处理系列——实现窗处理</a></p>
+<p><a href="http://xilinx.eetrend.com/d6-xilinx/blog/2015-08/8969.html" target="_blank" rel="noopener">ref2</a></p>
 <h2 id="中值滤波"><a href="#中值滤波" class="headerlink" title="中值滤波"></a>中值滤波</h2><p><em>中值滤波</em>基于排序统计理论，是抑制噪声的非线性信号处理技术。 </p>
 <p>先看效果：</p>
 <p><img src="http://pb8y9dvcx.bkt.clouddn.com/18-10-19/46796367.jpg" alt=""></p>
@@ -501,6 +502,11 @@
 <p>此外, 为了保证流水线操作过程中数据的同步性, 在第三级和第五级比较电路中需要插入数据寄存器 R 缓存当前该级中不参与比较的数据。</p>
 <p>放一张图示意下排序算法是过程：</p>
 <p><img src="http://pb8y9dvcx.bkt.clouddn.com/18-10-19/91981414.jpg" alt=""></p>
+<h2 id="Task"><a href="#Task" class="headerlink" title="Task:"></a>Task:</h2><ul>
+<li style="list-style: none"><input type="checkbox"> FPGA实现窗处理</li>
+<li style="list-style: none"><input type="checkbox"> Sobel算法原理</li>
+<li style="list-style: none"><input type="checkbox"> ……</li>
+</ul>
 
       
     </div>
@@ -669,7 +675,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#图像预处理的基本步骤"><span class="nav-number">1.</span> <span class="nav-text">图像预处理的基本步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#窗处理"><span class="nav-number">2.</span> <span class="nav-text">窗处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中值滤波"><span class="nav-number">3.</span> <span class="nav-text">中值滤波</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标准中值滤波"><span class="nav-number">3.1.</span> <span class="nav-text">标准中值滤波</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#滤波器整体结构的-FPGA-设计"><span class="nav-number">3.2.</span> <span class="nav-text">滤波器整体结构的 FPGA 设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#图像滤波器的结构"><span class="nav-number">3.2.1.</span> <span class="nav-text">图像滤波器的结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#滤波窗口生成模块——窗处理"><span class="nav-number">3.2.2.</span> <span class="nav-text">滤波窗口生成模块——窗处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图像行列计数器设计"><span class="nav-number">3.2.3.</span> <span class="nav-text">图像行列计数器设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#滤波算法设计"><span class="nav-number">3.2.4.</span> <span class="nav-text">滤波算法设计</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#图像预处理的基本步骤"><span class="nav-number">1.</span> <span class="nav-text">图像预处理的基本步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#窗处理"><span class="nav-number">2.</span> <span class="nav-text">窗处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中值滤波"><span class="nav-number">3.</span> <span class="nav-text">中值滤波</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标准中值滤波"><span class="nav-number">3.1.</span> <span class="nav-text">标准中值滤波</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#滤波器整体结构的-FPGA-设计"><span class="nav-number">3.2.</span> <span class="nav-text">滤波器整体结构的 FPGA 设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#图像滤波器的结构"><span class="nav-number">3.2.1.</span> <span class="nav-text">图像滤波器的结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#滤波窗口生成模块——窗处理"><span class="nav-number">3.2.2.</span> <span class="nav-text">滤波窗口生成模块——窗处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图像行列计数器设计"><span class="nav-number">3.2.3.</span> <span class="nav-text">图像行列计数器设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#滤波算法设计"><span class="nav-number">3.2.4.</span> <span class="nav-text">滤波算法设计</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Task"><span class="nav-number">4.</span> <span class="nav-text">Task:</span></a></li></ol></div>
             
 
           </div>
