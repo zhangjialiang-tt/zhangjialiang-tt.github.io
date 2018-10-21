@@ -123,14 +123,22 @@
 
 
 
+<meta name="description" content="Logic Elements and Logic Array Blocks in Cyclone IV DevicesLogic Elements——LELE是Cyclone IV设备架构中最小的逻辑单元。LE特点:  一个4输入查找表(LUT)，可以实现任意四个的变量函数 可编程寄存器 一个进位链连接 一个寄存器链连接    每个LE的可编程寄存器都可以配置为D、T、JK或SR flipflop">
 <meta property="og:type" content="article">
-<meta property="og:title" content=" test ">
+<meta property="og:title" content="test">
 <meta property="og:url" content="http://yoursite.com/2018/10/21/test/index.html">
 <meta property="og:site_name" content="技术人生">
+<meta property="og:description" content="Logic Elements and Logic Array Blocks in Cyclone IV DevicesLogic Elements——LELE是Cyclone IV设备架构中最小的逻辑单元。LE特点:  一个4输入查找表(LUT)，可以实现任意四个的变量函数 可编程寄存器 一个进位链连接 一个寄存器链连接    每个LE的可编程寄存器都可以配置为D、T、JK或SR flipflop">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-21T04:52:13.724Z">
+<meta property="og:image" content="http://pb8y9dvcx.bkt.clouddn.com/18-10-20/27305376.jpg">
+<meta property="og:image" content="http://pb8y9dvcx.bkt.clouddn.com/18-10-20/33438997.jpg">
+<meta property="og:image" content="http://pb8y9dvcx.bkt.clouddn.com/18-10-20/90797788.jpg">
+<meta property="og:image" content="http://pb8y9dvcx.bkt.clouddn.com/18-10-20/44506677.jpg">
+<meta property="og:updated_time" content="2018-10-21T05:04:14.107Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content=" test ">
+<meta name="twitter:title" content="test">
+<meta name="twitter:description" content="Logic Elements and Logic Array Blocks in Cyclone IV DevicesLogic Elements——LELE是Cyclone IV设备架构中最小的逻辑单元。LE特点:  一个4输入查找表(LUT)，可以实现任意四个的变量函数 可编程寄存器 一个进位链连接 一个寄存器链连接    每个LE的可编程寄存器都可以配置为D、T、JK或SR flipflop">
+<meta name="twitter:image" content="http://pb8y9dvcx.bkt.clouddn.com/18-10-20/27305376.jpg">
 
 
 
@@ -166,7 +174,7 @@
 
 
 
-  <title> test  | 技术人生</title>
+  <title>test | 技术人生</title>
   
 
 
@@ -354,7 +362,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"> test </h1>
+          <h1 class="post-title" itemprop="name headline">test</h1>
         
 
         <div class="post-meta">
@@ -404,7 +412,43 @@
       
 
       
-        
+        <h2 id="Logic-Elements-and-Logic-Array-Blocks-in-Cyclone-IV-Devices"><a href="#Logic-Elements-and-Logic-Array-Blocks-in-Cyclone-IV-Devices" class="headerlink" title="Logic Elements and Logic Array Blocks in Cyclone IV Devices"></a>Logic Elements and Logic Array Blocks in Cyclone IV Devices</h2><h3 id="Logic-Elements——LE"><a href="#Logic-Elements——LE" class="headerlink" title="Logic Elements——LE"></a>Logic Elements——LE</h3><p>LE是Cyclone IV设备架构中最小的逻辑单元。LE特点:</p>
+<ul>
+<li>一个4输入查找表(LUT)，可以实现任意四个的变量函数</li>
+<li>可编程寄存器</li>
+<li>一个进位链连接</li>
+<li>一个寄存器链连接</li>
+</ul>
+<p><img src="http://pb8y9dvcx.bkt.clouddn.com/18-10-20/27305376.jpg" alt=""></p>
+<blockquote>
+<p>每个LE的可编程寄存器都可以配置为D、T、JK或SR flipflop。每个寄存器都有数据、时钟、时钟使能和清零输入。使用全局时钟网络、通用I/O插脚或任何内部逻辑的信号都可以驱动时钟并清除寄存器的控制信号。对于组合逻辑函数，LUT可以绕过寄存器直接驱动LE输出。</p>
+<p>每个LE都有三个输出，分别驱动本地、行Row和列Column路由资源，LE里面的LUT或寄存器都能独立驱动这三个输出。</p>
+<p>两个LE的输出驱动列或行和直接链路路由连接（Direct Link Routing），一个LE驱动本地互连资源（Local Routing）。这允许LUT驱动一个输出，而寄存器驱动另一个输出。这个特性称为寄存器封装（register packing），它提高了设备的利用率，因为设备可以将寄存器和LUT用于不相关的功能。在使用寄存器封装时，LAB-wide的同步加载控制信号不可用。</p>
+<p>寄存器反馈模式（ register feedback）允许寄存器输出反馈到相同LE的LUT中，以确保寄存器中包含自己的扇出LUT，从而提供另一种改进的拟合机制。</p>
+<p>除了三个一般的路由输出之外，LAB中的LEs还有寄存器链输出，这允许同一LAB中的寄存器级联在一起。寄存器链输出的功能使得LUT可以用于组合函数，寄存器用于无关的移位寄存器实现。这些资源加速了LAB之间的连接，同时节省了本地互连资源。</p>
+</blockquote>
+<p>上面这一段是官方文档里关于LE描述的翻译，只看文字的话，让人觉得莫名其妙，不知所云，但是对照着LE结构图的话就能看出点意思。这段话其实就是Altera设计LE的思路，LE = LUT+Reg。</p>
+<h3 id="LE-Operating-Modes"><a href="#LE-Operating-Modes" class="headerlink" title="LE Operating Modes"></a>LE Operating Modes</h3><p>LE有两种模式：</p>
+<ul>
+<li>Normal mode</li>
+<li>Arithmetic mode</li>
+</ul>
+<p>对于常见的功能，Quartus软件自动选择合适的模式，如counters, adders, subtractors, and arithmetic functions，library of parameterized modules (LPM)函数等。</p>
+<h4 id="Normal-mode"><a href="#Normal-mode" class="headerlink" title="Normal mode"></a>Normal mode</h4><p>Normal mode适用于一般逻辑应用和组合逻辑函数。在Normal mode下，来自LAB的四个数据输入到一个四输入LUT。Quartus II编译器自动选择携带(Cin)或data3信号作为LUT的输入之一。正常模式下的LEs支持打包寄存器和寄存器反馈。</p>
+<p><img src="http://pb8y9dvcx.bkt.clouddn.com/18-10-20/33438997.jpg" alt=""></p>
+<h4 id="Arithmetic-mode"><a href="#Arithmetic-mode" class="headerlink" title="Arithmetic mode"></a>Arithmetic mode</h4><p>Arithmetic mode(算术模式)主要用于实现加法器、计数器、累加器和比较器。Arithmetic mode中的LE实现了一个2位全加法器和基本进位链(图2-3)。Arithmetic mode下的LEs可以驱动LUT输出的已注册和未注册版本。当LEs在算术模式下使用时，支持寄存器反馈和寄存器封装。</p>
+<p><img src="http://pb8y9dvcx.bkt.clouddn.com/18-10-20/90797788.jpg" alt=""></p>
+<p>Quartus II编译器自动链接同一列中的LAB，创建的carry链超过16个LEs。为了增强拟合，长携带链垂直运行，这允许快速水平连接到M9K内存块或嵌入式乘法器通过直接链接互连。例如，如果一个设计在靠近M9K内存块的列的LAB列中有一个长进位链，任何LE输出都可以通过直接链接互连来提供相邻的M9K内存块。如果携带链是水平运行的，那么任何不在M9K内存块列旁边的实验室都使用其他行或列互连来驱动M9K内存块。进位链一直延伸到整列。</p>
+<h3 id="Logic-Array-Blocks——LAB"><a href="#Logic-Array-Blocks——LAB" class="headerlink" title="Logic Array Blocks——LAB"></a>Logic Array Blocks——LAB</h3><p>每个LAB由以下特性组成:</p>
+<ul>
+<li>16个LE</li>
+<li>LAB控制信号</li>
+<li>LE进位链</li>
+<li>Register chains-寄存器链，用于传输一个LE的寄存器输出信号到另一个毗邻LE的寄存器</li>
+<li>Local interconnect-本地连接，在同一个LAB的LE之间传输信号</li>
+</ul>
+<p><img src="http://pb8y9dvcx.bkt.clouddn.com/18-10-20/44506677.jpg" alt=""></p>
+<h3 id="LAB-Control-Signals"><a href="#LAB-Control-Signals" class="headerlink" title="LAB Control Signals"></a>LAB Control Signals</h3>
       
     </div>
     
@@ -488,8 +532,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -553,6 +606,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Logic-Elements-and-Logic-Array-Blocks-in-Cyclone-IV-Devices"><span class="nav-number">1.</span> <span class="nav-text">Logic Elements and Logic Array Blocks in Cyclone IV Devices</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Logic-Elements——LE"><span class="nav-number">1.1.</span> <span class="nav-text">Logic Elements——LE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LE-Operating-Modes"><span class="nav-number">1.2.</span> <span class="nav-text">LE Operating Modes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Normal-mode"><span class="nav-number">1.2.1.</span> <span class="nav-text">Normal mode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Arithmetic-mode"><span class="nav-number">1.2.2.</span> <span class="nav-text">Arithmetic mode</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logic-Array-Blocks——LAB"><span class="nav-number">1.3.</span> <span class="nav-text">Logic Array Blocks——LAB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LAB-Control-Signals"><span class="nav-number">1.4.</span> <span class="nav-text">LAB Control Signals</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
